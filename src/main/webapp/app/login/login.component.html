@@ -1,0 +1,242 @@
+<!-- <div>
+  <div class="d-flex justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <h1 data-cy="loginTitle">Sign in</h1>
+      <div class="alert alert-danger" *ngIf="authenticationError" data-cy="loginError">
+        <strong>Failed to sign in!</strong> Please check your credentials and try again.
+      </div>
+      <form class="form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
+        <div class="mb-3">
+          <label class="username-label" for="username">Login</label>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            id="username"
+            placeholder="Your username"
+            formControlName="username"
+            #username
+            data-cy="username"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            id="password"
+            placeholder="Your password"
+            formControlName="password"
+            data-cy="password"
+          />
+        </div>
+
+        <div class="form-check">
+          <label class="form-check-label" for="rememberMe">
+            <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" formControlName="rememberMe" />
+            <span>Remember me</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" data-cy="submit">Sign in</button>
+      </form>
+      <div class="mt-3 alert alert-warning">
+        <a class="alert-link" routerLink="/account/reset/request" data-cy="forgetYourPasswordSelector">Did you forget your password?</a>
+      </div>
+
+      <div class="alert alert-warning">
+        <span>You don't have an account yet?</span>
+        <a class="alert-link" routerLink="/account/register">Register a new account</a>
+      </div>
+    </div>
+  </div>
+</div> -->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true"
+  ><p style="color: white">Loading...</p></ngx-spinner
+>
+<main>
+  <div class="box">
+    <div class="inner-box">
+      <div class="forms-wrap">
+        <form action="index.html" autocomplete="off" class="sign-in-form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
+          <div class="logo">
+            <a href=""
+              ><img src="../../content/images/logo1.png" alt="eCaptcha" style="text-decoration: none" />
+              eCaptcha
+            </a>
+          </div>
+
+          <div class="heading">
+            <h2>Welcome Back</h2>
+            <h6>Bạn chưa có tài khoản?</h6>
+            <a (click)="clickBtn()" class="toggle">Đăng ký</a>
+          </div>
+
+          <div class="actual-form">
+            <div class="input-wrap">
+              <input type="text" minlength="4" class="input-field" autocomplete="off" required formControlName="username" />
+              <label>Tài khoản</label>
+            </div>
+
+            <div class="input-wrap">
+              <input type="password" minlength="4" class="input-field" autocomplete="off" required formControlName="password" />
+              <label>Mật khẩu</label>
+            </div>
+
+            <input type="submit" [disabled]="loginForm.get('username')!.invalid || loginForm.invalid" value="Đăng nhập" class="sign-btn" />
+
+            <p class="text">
+              <a href="#">Quên mật khẩu!</a>
+            </p>
+          </div>
+        </form>
+
+        <form autocomplete="off" class="sign-up-form" name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm">
+          <div class="logo">
+            <a href=""
+              ><img src="../../content/images/logo1.png" alt="eCaptcha" style="text-decoration: none" />
+              eCaptcha
+            </a>
+          </div>
+
+          <div class="alert alert-danger" *ngIf="doNotMatch">The password and its confirmation do not match!</div>
+          <div class="heading" *ngIf="!success">
+            <h2>Get Started</h2>
+            <h6>Bạn đã có tài khoản?</h6>
+            <a (click)="clickBtn()" class="toggle">Đăng nhập</a>
+          </div>
+
+          <div class="heading" *ngIf="success">
+            <h2>Get Started</h2>
+            <h4>Đăng ký tài khoản thành công!! Bạn có thể đăng nhập</h4>
+            <a (click)="clickBtn()" class="toggle">tại đây!</a>
+          </div>
+
+          <div class="actual-form" *ngIf="!success">
+            <div class="input-wrap">
+              <input
+                type="text"
+                minlength="4"
+                class="input-field"
+                autocomplete="off"
+                required
+                formControlName="login"
+                placeholder="Tài khoản"
+              />
+            </div>
+
+            <div *ngIf="registerForm.get('login')!.invalid && (registerForm.get('login')!.dirty || registerForm.get('login')!.touched)">
+              <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.required"> Vui lòng nhập tài khoản. </small>
+
+              <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.minlength">
+                Tài khoản của bạn phải có ít nhất 5 ký tự.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.maxlength">
+                Tài khoản của bạn không được quá 50 ký tự.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.pattern">
+                Tài khoản chỉ được bao gồm chữ cái và số.
+              </small>
+            </div>
+
+            <div class="input-wrap">
+              <input type="email" class="input-field" autocomplete="off" required formControlName="email" placeholder="Email" />
+            </div>
+            <div *ngIf="registerForm.get('email')!.invalid && (registerForm.get('email')!.dirty || registerForm.get('email')!.touched)">
+              <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.required">
+                Vui lòng nhập email của bạn.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.invalid">
+                Vui lòng nhập đúng định dạng email.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.maxlength">
+                Email của bạn không được quá 100 ký tự
+              </small>
+            </div>
+
+            <div class="input-wrap">
+              <input
+                type="password"
+                minlength="4"
+                class="input-field"
+                autocomplete="off"
+                required
+                formControlName="password"
+                placeholder="Mật khẩu"
+              />
+            </div>
+            <div
+              *ngIf="
+                registerForm.get('password')!.invalid && (registerForm.get('password')!.dirty || registerForm.get('password')!.touched)
+              "
+            >
+              <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.required"> Vui lòng nhập mật khẩu </small>
+
+              <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.minlength">
+                Mật khẩu của bạn phải có ít nhất 4 ký tự
+              </small>
+
+              <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.maxlength">
+                Mật khẩu của bạn không được quá 50 ký tự
+              </small>
+            </div>
+            <div class="input-wrap">
+              <input
+                type="password"
+                minlength="4"
+                class="input-field"
+                autocomplete="off"
+                required
+                formControlName="confirmPassword"
+                placeholder="Xác nhận mật khẩu"
+              />
+            </div>
+            <div
+              style="margin-bottom: 10px"
+              *ngIf="
+                registerForm.get('confirmPassword')!.invalid &&
+                (registerForm.get('confirmPassword')!.dirty || registerForm.get('confirmPassword')!.touched)
+              "
+            >
+              <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.required">
+                Vui lòng xác nhận mật khẩu
+              </small>
+            </div>
+            <input
+              type="submit"
+              [disabled]="registerForm.get('email')!.invalid || registerForm.get('login')!.invalid || registerForm.invalid"
+              value="Đăng ký"
+              class="sign-btn"
+            />
+
+            <p class="text">Bằng cách đăng ký, bạn đồng ý với Điều khoản và Điều kiện & Chính sách Bảo mật của chúng tôi</p>
+          </div>
+        </form>
+      </div>
+
+      <div class="carousel">
+        <div class="images-wrapper">
+          <img data-aos="fade-up" data-aos-delay="100" src="../../content/images/image1.png" class="image img-1 show" alt="" />
+          <img src="../../content/images/image2.png" class="image img-2" alt="" />
+          <img src="../../content/images/image3.png" class="image img-3" alt="" />
+        </div>
+
+        <div class="text-slider">
+          <div class="text-wrap">
+            <div class="text-group">
+              <h2>Hệ thống tự động giải Captcha</h2>
+              <h2>Customize as you like</h2>
+              <h2>Invite students to your class</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

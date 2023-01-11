@@ -1,0 +1,710 @@
+<!-- <div class="row">
+  <div class="col-md-3">
+    <span class="hipster img-fluid rounded"></span>
+  </div>
+
+  <div class="col-md-9">
+    <h1 class="display-4"><span>Welcome, Java Hipster!</span> (Captcha Web)</h1>
+
+    <p class="lead">This is your homepage</p>
+
+    <div [ngSwitch]="account !== null">
+      <div class="alert alert-success" *ngSwitchCase="true">
+        <span id="home-logged-message" *ngIf="account">You are logged in as user "{{ account.login }}".</span>
+      </div>
+
+      <div class="alert alert-warning" *ngSwitchCase="false">
+        <span>If you want to </span>
+        <a class="alert-link" (click)="login()">sign in</a
+        ><span
+          >, you can try the default accounts:<br />- Administrator (login="admin" and password="admin") <br />- User (login="user" and
+          password="user").</span
+        >
+      </div>
+
+      <div class="alert alert-warning" *ngSwitchCase="false">
+        <span>You don't have an account yet?</span>&nbsp;
+        <a class="alert-link" routerLink="account/register">Register a new account</a>
+      </div>
+    </div>
+
+    <p>If you have any question on JHipster:</p>
+
+    <ul>
+      <li><a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer">JHipster homepage</a></li>
+      <li>
+        <a href="https://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener noreferrer">JHipster on Stack Overflow</a>
+      </li>
+      <li>
+        <a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener noreferrer"
+          >JHipster bug tracker</a
+        >
+      </li>
+      <li>
+        <a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">JHipster public chat room</a>
+      </li>
+      <li><a href="https://twitter.com/jhipster" target="_blank" rel="noopener noreferrer">follow @jhipster on Twitter</a></li>
+    </ul>
+
+    <p>
+      <span>If you like JHipster, don't forget to give us a star on</span>
+      <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">GitHub</a>!
+    </p>
+  </div>
+</div> -->
+<!-- 
+<div class="contaiter main">
+  <div class="flex">
+    <div class="side-nav">
+      <a href="https://ecaptcha.sieuthitool.com/home" class="intro-x flex items-center pl-5 pt-4">
+        <img alt="API CAPTCHA" class="w-6" src="https://ecaptcha.sieuthitool.com/template/img/iconbank/logo.svg" />
+        <span style="font-weight: 300;" class="hidden xl:block text-white text-lg ml-3"> CAPTCHA<span class="font-medium" style="font-weight: 600;"> NRO</span> </span>
+      </a>
+      <div class="side-nav__devider my-6"></div>
+      <ul>
+        <li>
+          <a href="" class="side-menu side-menu--active">
+            <div class="side-menu__icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-home"
+              >
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <div class="side-menu__title">Tổng quan</div>
+          </a>
+        </li>
+        <li>
+          <a href="" class="side-menu">
+            <div class="side-menu__icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-more-horizontal"
+              >
+                <circle cx="12" cy="12" r="1"></circle>
+                <circle cx="19" cy="12" r="1"></circle>
+                <circle cx="5" cy="12" r="1"></circle>
+              </svg>
+            </div>
+            <div class="side-menu__title">Thống kê</div>
+          </a>
+        </li>
+        <li>
+          <a href="" class="side-menu">
+            <div class="side-menu__icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-book"
+              >
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </div>
+            <div class="side-menu__title">Tài liệu API</div>
+          </a>
+        </li>
+        <div style="margin: 20px 0" class="content__devider my-6"></div>
+        <li>
+          <a href="" class="side-menu">
+            <div class="side-menu__icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-users"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <div class="side-menu__title">Hồ sơ</div>
+          </a>
+        </li>
+        <li>
+          <a href="" class="side-menu">
+            <div class="side-menu__icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-dollar-sign"
+              >
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <div class="side-menu__title">Nạp tiền</div>
+          </a>
+        </li>
+        <div style="margin: 20px 0" class="content__devider my-6"></div>
+        <li>
+          <a href="" class="side-menu" target="_blank">
+            <div class="side-menu__icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-plus"
+              >
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+            <div class="side-menu__title">Hệ thống Tool NRO</div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <div class="top-bar">
+        <div class="-intro-x breadcrumb mr-auto hidden flex" style="margin-right: auto; margin-bottom: 0">
+          <a href="">Trang chủ</a>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-chevron-right breadcrumb__icon"
+          >
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+          <a href="" class="breadcrumb--active">Tổng quan</a>
+        </div>
+        <div class="intro-x dropdown mr-auto mr-6">
+          <div class="dropdown-toggle notification notification--bullet cursor-pointer" role="button" aria-expanded="false">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-bell notification__icon dark:text-gray-300"
+            >
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+          </div>
+          
+        </div>
+        <img class="" style="width: 3%; border-radius: 15px" alt="Avatar " src="../../content/images/avtpng.png" />
+
+       
+      </div>
+      <div class="content__devider my-6"></div>
+      <div class="content-body">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="text-2xl font-medium mt-10 text-center mr-auto">Chọn gói cần mua</h2>
+            <p></p>
+
+            <div class="row pricing-card">
+              
+              <div class="intro-y tranform col-4 col-sm-offset-2 col-sm-4 col-md-4 col-lg-offset-2 col-lg-4 mx-auto">
+                <div class="card basic-pricing text-center light">
+                  <div class="card-body">
+                    <div class="card-header border-bottom">
+                      <h4 style="font-size: 1rem; margin-top: 8px">Combo 1 - Mua lẻ</h4>
+                    </div>
+                    <div class="card-body my-2 py-25">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="plan-price mt-2">
+                            <span class="pricing-basic-value fw-bolder text-primary" style="font-size: 40px">20</span>
+                            <sup class="font-medium-1 fw-bold text-primary" style="top: -2em">Đ</sup>
+                            <sub class="pricing-duration text-body font-medium-1 fw-bold" style="font-size: 20px">/1 captcha</sub>
+                          </div>
+
+                          <div class="">
+                            <h5><span class="badge badge-light-primary ms-51">Khi mua dưới 10.000 mã</span></h5>
+                          </div>
+                          <div class="desc-price mb-2 pb-50">
+                            <p style="text-align: center">
+                              <font color="#ff0000"><i class="far fa-check-circle"></i> Giải siêu tốc 1S </font>
+                            </p>
+                            <p style="text-align: center">
+                              <font color="#ff0000"><i class="far fa-check-circle"></i> Chỉ tính khi giải đúng </font>
+                            </p>
+                            <p style="text-align: center">
+                              <font color="#ff0000"><i class="far fa-check-circle"></i> Hỗ trợ 24/7 </font>
+                            </p>
+                            <p style="text-align: center">
+                              <font color="#ff0000"><i class="far fa-check-circle"></i> Tiết kiệm chi phí</font>
+                            </p>
+                          </div>
+
+                          <div style="margin-top: 0.5rem" class="col-12"><button class="button-buy" role="button">Mua ngay</button></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              
+
+              <div class="intro-y tranform col-4 col-sm-offset-2 col-sm-4 col-md-4 col-lg-offset-2 col-lg-4 mx-auto">
+                <div class="card basic-pricing text-center lightt">
+                  <div class="card-body">
+                    <div class="card-header border-bottom">
+                      <h4 style="font-size: 1rem; margin-top: 8px">Combo 2 - Mua trên 150K VNĐ</h4>
+                    </div>
+                    <div class="card-body my-2 py-25">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="plan-price mt-2">
+                            <span class="pricing-basic-value fw-bolder text-primary" style="font-size: 40px">15</span>
+                            <sup class="font-medium-1 fw-bold text-primary" style="top: -2em">Đ</sup>
+                            <sub class="pricing-duration text-body font-medium-1 fw-bold" style="font-size: 20px">/1 captcha</sub>
+                          </div>
+                          <div class="">
+                            <h5><span class="badge badge-light-primary ms-51">Khi mua trên 10.000 mã</span></h5>
+                          </div>
+                          <div class="desc-price mb-2 pb-50">
+                            <p style="text-align: center">
+                              <font color="#ff0000"><i class="far fa-check-circle"></i> Giải siêu tốc 1S </font>
+                            </p>
+                            <p style="text-align: center">
+                              <font color="#ff0000"><i class="far fa-check-circle"></i> Chỉ tính khi giải đúng </font>
+                            </p>
+                            <p style="text-align: center">
+                              <font color="#ff0000"><i class="far fa-check-circle"></i> Hỗ trợ 24/7 </font>
+                            </p>
+                            <p style="text-align: center">
+                              <font color="#ff0000"><i class="far fa-check-circle"></i> Tiết kiệm chi phí</font>
+                            </p>
+                          </div>
+                          <div class="mb-2 pb-50"></div>
+                          <div style="margin-top: 0.5rem" class="col-12"><button class="button-buy" role="button">Mua ngay</button></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            
+
+              <div class="intro-y tranform col-4 col-sm-offset-2 col-sm-4 col-md-4 col-lg-offset-2 col-lg-4 mx-auto">
+                <div class="card basic-pricing text-center lightt">
+                  <div class="card-body">
+                    <div class="card-header border-bottom">
+                      <h4 style="font-size: 1rem; margin-top: 8px">Combo 3 - Mua trên 500K VNĐ</h4>
+                    </div>
+                    <div class="card-body my-2 py-25">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="plan-price mt-2">
+                            <span class="pricing-basic-value fw-bolder text-primary" style="font-size: 40px">10</span>
+                            <sup class="font-medium-1 fw-bold text-primary" style="top: -2em">Đ</sup>
+                            <sub class="pricing-duration text-body font-medium-1 fw-bold" style="font-size: 20px">/1 captcha</sub>
+                          </div>
+                          <div class="">
+                            <h5><span class="badge badge-light-primary ms-51">Khi mua trên 50.000 mã</span></h5>
+                          </div>
+                          <div class="desc-price mb-2 pb-50">
+                            <p style="text-align: center">
+                              <font color="#ff0000"><i class="far fa-check-circle"></i> Giải siêu tốc 1S </font>
+                            </p>
+                            <p style="text-align: center">
+                              <font color="#ff0000"><i class="far fa-check-circle"></i> Chỉ tính khi giải đúng </font>
+                            </p>
+                            <p style="text-align: center">
+                              <font color="#ff0000"><i class="far fa-check-circle"></i> Hỗ trợ 24/7 </font>
+                            </p>
+                            <p style="text-align: center">
+                              <font color="#ff0000"><i class="far fa-check-circle"></i> Tiết kiệm chi phí</font>
+                            </p>
+                          </div>
+                          <div class="mb-2 pb-50"></div>
+                          <div style="margin-top: 0.5rem" class="col-12"><button class="button-buy" role="button">Mua ngay</button></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<header id="header" class="fixed-top d-flex align-items-center">
+  <div class="container d-flex justify-content-between">
+    <div class="logo">
+      <!-- Uncomment below if you prefer to use an text logo -->
+      <!-- <h1><a href="index.html">NewBiz</a></h1> -->
+      <a style="margin-top: 10px; font-size: 30px; font-weight: 500" href="index.html"
+        ><img src="../../content/images/logo1.png" style="max-height: 40px" alt="" class="img-fluid" />eCaptcha</a
+      >
+    </div>
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto active" href="#hero">Trang chủ</a></li>
+        <!-- <li><a class="nav-link scrollto" href="#about">About</a></li> -->
+        <li><a class="nav-link scrollto" href="#why-us">Dịch vụ</a></li>
+        <li><a class="nav-link scrollto" href="#portfolio">API</a></li>
+        <li><a class="nav-link scrollto" href="#team">Thống kê</a></li>
+        <li><a class="nav-link scrollto" href="#contact">Nạp Coin</a></li>
+
+        <li class="dropdown">
+          <a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+          <ul>
+            <div class="dropdown-menu__content box bg-theme-26 dark:bg-dark-6 text-white" *ngIf="account">
+              <div class="border-b border-theme-27 dark:border-dark-3">
+                <div style="color: red; font-weight: 500; text-align: center">{{ account.login }}</div>
+                <div class="p-2">
+                  <a
+                    style="justify-content: flex-start"
+                    [routerLink]="['./', 'infomation', account.login]"
+                    class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="feather feather-user w-4 h-4 mr-2"
+                      style="margin: 0 20px"
+                    >
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    Tài khoản
+                  </a>
+                  <a
+                    style="justify-content: flex-start"
+                    href=""
+                    class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="feather feather-help-circle w-4 h-4 mr-2"
+                      style="margin: 0 20px"
+                    >
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    Hỗ trợ
+                  </a>
+                </div>
+                <div class="side-nav__devider my-6"></div>
+                <div class="p-2 border-t border-theme-27 dark:border-dark-3">
+                  <a
+                    style="justify-content: flex-start"
+                    (click)="logout()"
+                    class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="feather feather-toggle-right w-4 h-4 mr-2"
+                      style="margin: 0 20px"
+                    >
+                      <rect x="1" y="5" width="22" height="14" rx="7" ry="7"></rect>
+                      <circle cx="16" cy="12" r="3"></circle>
+                    </svg>
+                    Đăng xuất
+                  </a>
+                </div>
+              </div>
+            </div>
+            <li><a *ngIf="!account" href="#">Đăng nhập</a></li>
+          </ul>
+        </li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+    <!-- .navbar -->
+  </div>
+</header>
+
+<!-- #header -->
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="clearfix">
+  <div class="container" data-aos="fade-up">
+    <div class="hero-img" data-aos="zoom-out" data-aos-delay="200">
+      <img src="../../content/images/hero-img.svg" alt="" class="img-fluid" />
+    </div>
+
+    <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
+      <h2>Chúng tôi cung cấp<br /><span>giải pháp</span><br />cho vấn đề captcha của bạn!</h2>
+      <div>
+        <a href="#why-us" class="btn-get-started scrollto">Bắt đầu</a>
+        <a href="/login" *ngIf="!account" class="btn-services scrollto">Đăng nhập</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Hero Section -->
+
+<main id="main">
+  <!-- ======= Why Us Section ======= -->
+  <section id="why-us">
+    <div class="container" data-aos="fade-up">
+      <header class="section-header">
+        <h3>Chọn gói để sử dụng</h3>
+        <p>Click "Mua ngay" để mua Captcha ngay, 1 Captcha vẫn mua được!</p>
+      </header>
+
+      <div class="row row-eq-height justify-content-center">
+        <div class="col-lg-4 mb-4">
+          <div class="card" data-aos="zoom-in" data-aos-duration="600" data-aos-easing="ease-in-out" data-aos-delay="500">
+            <!-- <i class="bi bi-calendar4-week"></i> -->
+
+            <div class="card-body">
+              <h4 class="card-title">Combo 1 - Mua lẻ</h4>
+              <div class="plan-price mt-2">
+                <span class="pricing-basic-value fw-bolder text-primary" style="font-size: 40px">20</span>
+                <sup class="font-medium-1 fw-bold text-primary" style="top: -2em">Đ</sup>
+                <sub class="pricing-duration text-body font-medium-1 fw-bold" style="font-size: 20px">/1 captcha</sub>
+              </div>
+              <div class="">
+                <h5><span class="badge badge-light-primary ms-51">Khi mua dưới 10.000 mã</span></h5>
+              </div>
+              <p class="card-text">
+                <span style="color: #ff0000"> Giải siêu tốc 1S </span><br />
+                <span style="color: #ff0000"> Chỉ tính khi giải đúng </span><br />
+                <span style="color: #ff0000"> Hỗ trợ 24/7 </span><br />
+                <span style="color: #ff0000"> Tiết kiệm chi phí </span>
+              </p>
+
+              <div style="margin-top: 0.5rem" class="col-12"><button class="button-buy" role="button">Mua ngay</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+          <div class="card" data-aos="zoom-in" data-aos-delay="400">
+            <!-- <i class="bi bi-calendar4-week"></i> -->
+
+            <div class="card-body">
+              <h4 class="card-title">Combo 1 - Mua lẻ</h4>
+              <div class="plan-price mt-2">
+                <span class="pricing-basic-value fw-bolder text-primary" style="font-size: 40px">20</span>
+                <sup class="font-medium-1 fw-bold text-primary" style="top: -2em">Đ</sup>
+                <sub class="pricing-duration text-body font-medium-1 fw-bold" style="font-size: 20px">/1 captcha</sub>
+              </div>
+              <div class="">
+                <h5><span class="badge badge-light-primary ms-51">Khi mua dưới 10.000 mã</span></h5>
+              </div>
+              <p class="card-text">
+                <span style="color: #ff0000"> Giải siêu tốc 1S </span><br />
+                <span style="color: #ff0000"> Chỉ tính khi giải đúng </span><br />
+                <span style="color: #ff0000"> Hỗ trợ 24/7 </span><br />
+                <span style="color: #ff0000"> Tiết kiệm chi phí </span>
+              </p>
+
+              <div style="margin-top: 0.5rem" class="col-12"><button class="button-buy" role="button">Mua ngay</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+          <div class="card" data-aos="zoom-in" data-aos-delay="100">
+            <!-- <i class="bi bi-calendar4-week"></i> -->
+
+            <div class="card-body">
+              <h4 class="card-title">Combo 1 - Mua lẻ</h4>
+              <div class="plan-price mt-2">
+                <span class="pricing-basic-value fw-bolder text-primary" style="font-size: 40px">20</span>
+                <sup class="font-medium-1 fw-bold text-primary" style="top: -2em">Đ</sup>
+                <sub class="pricing-duration text-body font-medium-1 fw-bold" style="font-size: 20px">/1 captcha</sub>
+              </div>
+              <div class="">
+                <h5><span class="badge badge-light-primary ms-51">Khi mua dưới 10.000 mã</span></h5>
+              </div>
+              <p class="card-text">
+                <span style="color: #ff0000"> Giải siêu tốc 1S </span><br />
+                <span style="color: #ff0000"> Chỉ tính khi giải đúng </span><br />
+                <span style="color: #ff0000"> Hỗ trợ 24/7 </span><br />
+                <span style="color: #ff0000"> Tiết kiệm chi phí </span>
+              </p>
+
+              <div style="margin-top: 0.5rem" class="col-12"><button class="button-buy" role="button">Mua ngay</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row counters" data-aos="fade-up" data-aos-delay="100">
+        <div id="important-notes-mw" class="tns-ovh">
+          <div class="tns-inner" id="important-notes-iw">
+            <div
+              class="tiny-slider tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal"
+              id="important-notes"
+              style="transition-duration: 0s; transform: translate3d(0%, 0px, 0px)"
+            >
+              <div
+                class="p-3 tns-item tns-slide-active"
+                style="
+                  background-clip: border-box;
+                  border: 0 solid rgba(34, 41, 47, 0.125);
+                  border-radius: 0.5rem;
+                  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+                "
+                id="important-notes-item0"
+              >
+                <div class="text-base font-medium truncate">Dịch vụ Captcha NRO</div>
+                <div class="text-gray-600 text-justify mt-1">
+                  Đăng kí dịch vụ giải Captcha giá rẻ khởi chạy ngay dự án của bạn với mức chi phí siêu rẻ, với công nghệ AI hiện đại có thể
+                  giải chính xác hơn 90% captcha.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Why Us Section -->
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 footer-info">
+          <h3>eCaptcha</h3>
+          <p>
+            Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum
+            iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.
+          </p>
+        </div>
+
+        <div class="col-lg-2 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-contact">
+          <h4>Contact Us</h4>
+          <p>
+            A108 Adam Street <br />
+            New York, NY 535022<br />
+            United States <br />
+            <strong>Phone:</strong> +1 5589 55488 55<br />
+            <strong>Email:</strong> info@example.com<br />
+          </p>
+
+          <div class="social-links">
+            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-newsletter">
+          <h4>Our Newsletter</h4>
+          <p>
+            Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa
+            amet magna export quem marada parida nodela caramase seza.
+          </p>
+          <form action="" method="post"><input type="email" name="email" /><input type="submit" value="Subscribe" /></form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="copyright">&copy; Copyright <strong>NewBiz</strong>. All Rights Reserved</div>
+    <div class="credits">
+      <!--
+      All the links in the footer should remain intact.
+      You can delete the links only if you purchased the pro version.
+      Licensing information: https://bootstrapmade.com/license/
+      Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=NewBiz
+    -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </div>
+</footer>
