@@ -3,6 +3,9 @@
     <span id="user-management-page-heading" data-cy="userManagementPageHeading">Users</span>
 
     <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="updateCaptcha()" [disabled]="isLoading">
+        <span>Update Captcha</span>
+      </button>
       <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Refresh List</span>

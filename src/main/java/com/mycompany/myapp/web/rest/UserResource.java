@@ -10,6 +10,7 @@ import com.mycompany.myapp.service.dto.AdminUserDTO;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import com.mycompany.myapp.web.rest.errors.EmailAlreadyUsedException;
 import com.mycompany.myapp.web.rest.errors.LoginAlreadyUsedException;
+import com.mycompany.myapp.web.rest.vm.UpdateCaptchaReq;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
@@ -155,6 +156,14 @@ public class UserResource {
             updatedUser,
             HeaderUtil.createAlert(applicationName, "A user is updated with identifier " + userDTO.getLogin(), userDTO.getLogin())
         );
+    }
+
+    @PostMapping("/updateCaptcha")
+    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
+    public ResponseEntity<AdminUserDTO> updateCaptcha(@RequestBody UpdateCaptchaReq requestupdateCaptchaRequest) {
+        log.debug("REST request to update captcha for User : {}", requestupdateCaptchaRequest.getUsername());
+        Optional<AdminUserDTO> updatedUser = userService.updateCaptcha(requestupdateCaptchaRequest);
+        return ResponseUtil.wrapOrNotFound(updatedUser);
     }
 
     /**

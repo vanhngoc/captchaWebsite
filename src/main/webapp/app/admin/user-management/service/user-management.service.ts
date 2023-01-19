@@ -6,13 +6,19 @@ import { ApplicationConfigService } from 'app/core/config/application-config.ser
 import { createRequestOption } from 'app/core/request/request-util';
 import { Pagination } from 'app/core/request/request.model';
 import { IUser } from '../user-management.model';
+import { UpdateCaptcha } from '../update/update-captcha.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserManagementService {
   private resourceUrl = this.applicationConfigService.getEndpointFor('api/admin/users');
 
+  private updateCaptchaUrl = this.applicationConfigService.getEndpointFor('api/admin/updateCaptcha');
+
   constructor(private http: HttpClient, private applicationConfigService: ApplicationConfigService) {}
 
+  updateCaptcha(updateCaptcha: UpdateCaptcha): Observable<IUser> {
+    return this.http.post<IUser>(this.updateCaptchaUrl, updateCaptcha);
+  }
   create(user: IUser): Observable<IUser> {
     return this.http.post<IUser>(this.resourceUrl, user);
   }

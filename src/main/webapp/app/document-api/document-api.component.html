@@ -1,0 +1,199 @@
+<header id="header" class="fixed-top d-flex align-items-center">
+  <div class="container d-flex justify-content-between">
+    <div class="logo">
+      <!-- Uncomment below if you prefer to use an text logo -->
+      <!-- <h1><a href="index.html">NewBiz</a></h1> -->
+      <a style="margin-top: 10px; font-size: 30px; font-weight: 500" href="index.html"
+        ><img src="../../content/images/logo1.png" style="max-height: 40px" alt="" class="img-fluid" />eCaptcha</a
+      >
+    </div>
+
+    <nav id="navbar" class="navbar">
+      <ul id="dropdownUL">
+        <li><a class="nav-link scrollto active" href="./">Trang chủ</a></li>
+        <!-- <li><a class="nav-link scrollto" href="#about">About</a></li> -->
+        <li><a class="nav-link scrollto" href="#why-us">Dịch vụ</a></li>
+        <li><a class="nav-link scrollto" href="/document-api">Tài liệu API</a></li>
+
+        <li class="dropdown">
+          <a href="#" (click)="dropdownNavMobile()"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+          <ul>
+            <div class="dropdown-menu__content box bg-theme-26 dark:bg-dark-6 text-white" *ngIf="account">
+              <div class="border-b border-theme-27 dark:border-dark-3">
+                <div style="color: red; font-weight: 500; text-align: center">{{ account.login }}</div>
+                <div class="p-2">
+                  <a
+                    style="justify-content: flex-start"
+                    [routerLink]="['/', 'infomation', account.login]"
+                    class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="feather feather-user w-4 h-4 mr-2"
+                      style="margin: 0 20px"
+                    >
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    Tài khoản
+                  </a>
+                  <a
+                    style="justify-content: flex-start"
+                    href=""
+                    class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="feather feather-help-circle w-4 h-4 mr-2"
+                      style="margin: 0 20px"
+                    >
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    Hỗ trợ
+                  </a>
+                </div>
+                <div class="side-nav__devider my-6"></div>
+                <div class="p-2 border-t border-theme-27 dark:border-dark-3">
+                  <a
+                    style="justify-content: flex-start"
+                    (click)="logout()"
+                    class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="feather feather-toggle-right w-4 h-4 mr-2"
+                      style="margin: 0 20px"
+                    >
+                      <rect x="1" y="5" width="22" height="14" rx="7" ry="7"></rect>
+                      <circle cx="16" cy="12" r="3"></circle>
+                    </svg>
+                    Đăng xuất
+                  </a>
+                </div>
+              </div>
+            </div>
+            <li><a *ngIf="!account" href="#">Đăng nhập</a></li>
+          </ul>
+        </li>
+      </ul>
+      <i (click)="activeNavMobile()" style="width: 20px; color: blue" class="bi bi-list mobile-nav-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+          <path
+            fill-rule="evenodd"
+            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+          /></svg
+      ></i>
+    </nav>
+    <!-- .navbar -->
+  </div>
+</header>
+<!-- #header -->
+
+<main id="main">
+  <!-- ======= Breadcrumbs Section ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2 style="font-weight: 500; color: #007bff">Tài liệu API</h2>
+        <ol>
+          <li><a href="index.html">Trang chủ</a></li>
+          <li>Tài liệu API</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <!-- End Breadcrumbs Section -->
+
+  <section class="inner-page pt-4" style="height: 750px; background-color: #f1f5f8">
+    <div class="container">
+      <div class="row">
+        <div class="col info-content">
+          <div class="boxbody_body" style="margin-top: 20px">
+            <div class="text-danger"></div>
+
+            <table class="table table-bordered" style="z-index: 0">
+              <tbody>
+                <tr>
+                  <td style="width: 30%; font-weight: 500">Merchant Key:</td>
+                  <td style="font-weight: 400">{{ account!.merchantKey }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3 class="title_note">Hướng dẫn tích hợp</h3>
+            <h6>Method: POST</h6>
+            <h6 class="">API URL:</h6>
+            <h6 class="">Param</h6>
+            <table class="table table-bordered" style="z-index: 0">
+              <thead>
+                <tr>
+                  <th scope="col">Tham số</th>
+                  <th scope="col">Kiểu dữ liệu</th>
+                  <th scope="col">Ghi chú</th>
+                </tr>
+              </thead>
+              <tbody style="font-weight: 400">
+                <tr>
+                  <td style="width: 30%">merchantKey</td>
+                  <td>String</td>
+                  <td>Lấy từ website</td>
+                </tr>
+                <tr>
+                  <td style="width: 30%">image</td>
+                  <td>String</td>
+                  <td>ảnh dạng base64</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+  <div class="container">
+    <div class="copyright">&copy; Copyright <strong>NewBiz</strong>. All Rights Reserved</div>
+    <div class="credits">
+      <!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=NewBiz
+        -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </div>
+</footer>
+<!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { User } from '../user-management.model';
 import { UserManagementService } from '../service/user-management.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'jhi-user-mgmt-update',
@@ -33,7 +34,12 @@ export class UserManagementUpdateComponent implements OnInit {
     authorities: [],
   });
 
-  constructor(private userService: UserManagementService, private route: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    private userService: UserManagementService,
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private spinner: NgxSpinnerService
+  ) {}
 
   ngOnInit(): void {
     this.route.data.subscribe(({ user }) => {

@@ -10,6 +10,7 @@ import { Account } from 'app/core/auth/account.model';
 import { UserManagementService } from '../service/user-management.service';
 import { User } from '../user-management.model';
 import { UserManagementDeleteDialogComponent } from '../delete/user-management-delete-dialog.component';
+import { UpdateCaptchaComponent } from './update-captcha.component';
 
 @Component({
   selector: 'jhi-user-mgmt',
@@ -49,6 +50,17 @@ export class UserManagementComponent implements OnInit {
   deleteUser(user: User): void {
     const modalRef = this.modalService.open(UserManagementDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.user = user;
+    // unsubscribe not needed because closed completes on modal close
+    modalRef.closed.subscribe(reason => {
+      if (reason === 'deleted') {
+        this.loadAll();
+      }
+    });
+  }
+
+  updateCaptcha(): void {
+    const modalRef = this.modalService.open(UpdateCaptchaComponent, { size: 'lg', backdrop: 'static' });
+
     // unsubscribe not needed because closed completes on modal close
     modalRef.closed.subscribe(reason => {
       if (reason === 'deleted') {

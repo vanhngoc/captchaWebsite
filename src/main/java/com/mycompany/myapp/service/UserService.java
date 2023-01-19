@@ -9,6 +9,7 @@ import com.mycompany.myapp.security.AuthoritiesConstants;
 import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.service.dto.AdminUserDTO;
 import com.mycompany.myapp.service.dto.UserDTO;
+import com.mycompany.myapp.web.rest.vm.UpdateCaptchaReq;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -141,7 +142,7 @@ public class UserService {
         newUser.setImageUrl(userDTO.getImageUrl());
         newUser.setLangKey(userDTO.getLangKey());
         newUser.setMerchantKey(generateMerchantKey());
-        newUser.setCountCaptcha((long) 0);
+        newUser.setCountCaptcha((long) 1000);
         // new user is not active
         newUser.setActivated(true);
         // new user gets registration key
@@ -231,6 +232,22 @@ public class UserService {
                     .filter(Optional::isPresent)
                     .map(Optional::get)
                     .forEach(managedAuthorities::add);
+                this.clearUserCaches(user);
+                log.debug("Changed Information for User: {}", user);
+                return user;
+            })
+            .map(AdminUserDTO::new);
+    }
+
+    public Optional<AdminUserDTO> updateCaptcha(UpdateCaptchaReq requestuserDTO) {
+        System.out.println("Updating Captcha: " + userRepository.findOneByLogin(requestuserDTO.getUsername()).get().getLogin());
+        return Optional
+            .of(userRepository.findOneByLogin(requestuserDTO.getUsername()))
+            .filter(Optional::isPresent)
+            .map(Optional::get)
+            .map(user -> {
+                this.clearUserCaches(user);
+                user.setCountCaptcha(user.getCountCaptcha() + requestuserDTO.getCaptcha());
                 this.clearUserCaches(user);
                 log.debug("Changed Information for User: {}", user);
                 return user;

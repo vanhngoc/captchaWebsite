@@ -106,6 +106,7 @@
   },
   "defaultProject": "captcha-web",
   "cli": {
+    "analytics": "73cc442f-441f-494a-af20-c9e3f7368bf7",
     "cache": {
       "enabled": true,
       "path": "./target/angular/",

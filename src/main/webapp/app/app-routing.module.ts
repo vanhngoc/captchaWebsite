@@ -34,7 +34,11 @@ import { AuthGuard } from './core/auth/auth-guard';
           loadChildren: () => import('./infomation/infomation.module').then(m => m.InfomationModule),
           canActivate: [AuthGuard],
         },
-
+        {
+          path: 'document-api',
+          loadChildren: () => import('./document-api/document-api.module').then(m => m.DocumentApiModule),
+          canActivate: [AuthGuard],
+        },
         {
           path: '',
           loadChildren: () => import(`./entities/entity-routing.module`).then(m => m.EntityRoutingModule),

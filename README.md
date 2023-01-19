@@ -31,7 +31,7 @@ After installing Node, you should be able to run the following command to instal
 You will only need to run this command when dependencies change in [package.json](package.json).
 
 ```
-npm install
+npm install -force
 ```
 
 We use npm scripts and [Angular CLI][] with [Webpack][] as our build system.

@@ -1,3 +1,7 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true"
+  ><p style="color: white">Loading...</p></ngx-spinner
+>
+
 <header id="header" class="fixed-top d-flex align-items-center">
   <div class="container d-flex justify-content-between">
     <div class="logo">
@@ -9,16 +13,14 @@
     </div>
 
     <nav id="navbar" class="navbar">
-      <ul>
-        <li><a class="nav-link scrollto active" href="#hero">Trang chủ</a></li>
+      <ul id="dropdownUL">
+        <li><a class="nav-link scrollto active" href="./">Trang chủ</a></li>
         <!-- <li><a class="nav-link scrollto" href="#about">About</a></li> -->
         <li><a class="nav-link scrollto" href="#why-us">Dịch vụ</a></li>
-        <li><a class="nav-link scrollto" href="#portfolio">API</a></li>
-        <li><a class="nav-link scrollto" href="#team">Thống kê</a></li>
-        <li><a class="nav-link scrollto" href="#contact">Nạp Coin</a></li>
+        <li><a class="nav-link scrollto" href="/document-api">Tài liệu API</a></li>
 
         <li class="dropdown">
-          <a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+          <a href="#" (click)="dropdownNavMobile()"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
             <div class="dropdown-menu__content box bg-theme-26 dark:bg-dark-6 text-white" *ngIf="account">
               <div class="border-b border-theme-27 dark:border-dark-3">
@@ -26,7 +28,7 @@
                 <div class="p-2">
                   <a
                     style="justify-content: flex-start"
-                    href=""
+                    href="/infomation/{{ account.login }}"
                     class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"
                   >
                     <svg
@@ -104,7 +106,13 @@
           </ul>
         </li>
       </ul>
-      <i class="bi bi-list mobile-nav-toggle"></i>
+      <i (click)="activeNavMobile()" style="width: 20px; color: blue" class="bi bi-list mobile-nav-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+          <path
+            fill-rule="evenodd"
+            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+          /></svg
+      ></i>
     </nav>
     <!-- .navbar -->
   </div>
@@ -165,30 +173,64 @@
               <h2 class="font-medium text-base mr-auto">Thay đổi mật khẩu</h2>
             </div>
             <div class="side-nav__devider my-6"></div>
-
-            <div class="flex flex-col-reverse xl:flex-row flex-col">
-              <div class="flex-1 mt-6 xl:mt-0">
-                <div class="grid grid-cols-12 gap-x-5">
-                  <div class="col-span-12 xxl:col-span-6">
-                    <div class="mt-3">
-                      <label for="update-profile-form-1" class="form-label">Nhập mật khẩu mới</label>
-                      <input type="text" class="form-control" placeholder="Nhập mật khẩu" id="password" require="" />
+            <form name="form" role="form" (ngSubmit)="changePassword()" [formGroup]="passwordForm">
+              <div class="flex flex-col-reverse xl:flex-row flex-col">
+                <div class="flex-1 mt-6 xl:mt-0">
+                  <div class="grid grid-cols-12 gap-x-5">
+                    <div class="col-span-12 xxl:col-span-6">
+                      <div class="mt-3">
+                        <label for="update-profile-form-1" class="form-label">Nhập mật khẩu cũ </label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          placeholder="Nhập mật khẩu"
+                          id="currentPassword"
+                          require=""
+                          formControlName="currentPassword"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-span-12 xxl:col-span-6">
-                    <div class="mt-3">
-                      <label for="update-profile-form-6" class="form-label">Nhập lại mật khẩu mới</label>
-                      <input type="text" class="form-control" placeholder="Nhập lại mật khẩu" id="repassword" require="" />
+                    <div class="col-span-12 xxl:col-span-6">
+                      <div class="mt-3">
+                        <label for="update-profile-form-1" class="form-label">Nhập mật khẩu mới</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          placeholder="Nhập mật khẩu mới  "
+                          id="password"
+                          require=""
+                          formControlName="newPassword"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-span-12" style="text-align: center; margin-bottom: 25px">
-                    <button type="button" id="ChangePassword" class="btn btn-primary w-20 mt-3" style="margin: auto; width: 50%">
-                      Thay đổi thông tin
-                    </button>
+                    <div class="col-span-12 xxl:col-span-6">
+                      <div class="mt-3">
+                        <label for="update-profile-form-6" class="form-label">Nhập lại mật khẩu mới</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          placeholder="Nhập lại mật khẩu"
+                          id="repassword"
+                          require=""
+                          formControlName="confirmPassword"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-span-12" style="text-align: center; margin-bottom: 25px">
+                      <button
+                        type="submit"
+                        [disabled]="passwordForm.invalid"
+                        data-cy="submit"
+                        class="btn btn-primary w-20 mt-3"
+                        style="margin: auto; width: 50%"
+                      >
+                        Thay đổi thông tin
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -209,13 +251,13 @@
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
             <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
           </svg>
-          <div class="relative text-3xl font-medium mt-12 pl-4 ml-0.5">0</div>
+          <div class="relative text-3xl font-medium mt-12 pl-4 ml-0.5">{{ account?.countCaptcha }}</div>
           <div class="report-box-2__indicator bg-success tooltip cursor-pointer">
             47% <i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i>
           </div>
-          <div class="mt-4 text-slate-500">Thống kê số lượng captcha của bạn</div>
+          <div class="mt-4 text-slate-500" style="font-weight: 400">Thống kê số lượng captcha của bạn</div>
         </div>
-        <div
+        <!-- <div
           style="border-left: 1px solid rgb(0, 0, 0)"
           class="px-8 py-12 flex flex-col justify-center flex-1 border-t sm:border-t-0 sm:border-l border-slate-200 dark:border-darkmode-300 border-dashed"
         >
@@ -229,7 +271,7 @@
           </div>
           <div class="text-slate-500 text-xs mt-5">TRẠNG THÁI</div>
           <div class="mt-1.5 flex items-center"><div class="text-base">Hoạt động</div></div>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
@@ -238,59 +280,6 @@
 
 <!-- ======= Footer ======= -->
 <footer id="footer">
-  <div class="footer-top">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 footer-info">
-          <h3>NewBiz</h3>
-          <p>
-            Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum
-            iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.
-          </p>
-        </div>
-
-        <div class="col-lg-2 col-md-6 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-6 footer-contact">
-          <h4>Contact Us</h4>
-          <p>
-            A108 Adam Street <br />
-            New York, NY 535022<br />
-            United States <br />
-            <strong>Phone:</strong> +1 5589 55488 55<br />
-            <strong>Email:</strong> info@example.com<br />
-          </p>
-
-          <div class="social-links">
-            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 footer-newsletter">
-          <h4>Our Newsletter</h4>
-          <p>
-            Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa
-            amet magna export quem marada parida nodela caramase seza.
-          </p>
-          <form action="" method="post"><input type="email" name="email" /><input type="submit" value="Subscribe" /></form>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="container">
     <div class="copyright">&copy; Copyright <strong>NewBiz</strong>. All Rights Reserved</div>
     <div class="credits">

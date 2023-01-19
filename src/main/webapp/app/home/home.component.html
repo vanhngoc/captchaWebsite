@@ -398,16 +398,14 @@
 
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="nav-link scrollto active" href="#hero">Trang chủ</a></li>
+        <li><a class="nav-link scrollto active" href="./">Trang chủ</a></li>
         <!-- <li><a class="nav-link scrollto" href="#about">About</a></li> -->
         <li><a class="nav-link scrollto" href="#why-us">Dịch vụ</a></li>
-        <li><a class="nav-link scrollto" href="#portfolio">API</a></li>
-        <li><a class="nav-link scrollto" href="#team">Thống kê</a></li>
-        <li><a class="nav-link scrollto" href="#contact">Nạp Coin</a></li>
+        <li><a class="nav-link scrollto" href="/document-api">Tài liệu API</a></li>
 
         <li class="dropdown">
-          <a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-          <ul>
+          <a href="#" (click)="dropdownNavMobile()"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+          <ul id="dropdownUL">
             <div class="dropdown-menu__content box bg-theme-26 dark:bg-dark-6 text-white" *ngIf="account">
               <div class="border-b border-theme-27 dark:border-dark-3">
                 <div style="color: red; font-weight: 500; text-align: center">{{ account.login }}</div>
@@ -434,6 +432,31 @@
                       <circle cx="12" cy="7" r="4"></circle>
                     </svg>
                     Tài khoản
+                  </a>
+                  <a
+                    *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                    routerLinkActive="active"
+                    style="justify-content: flex-start"
+                    [routerLink]="['./', 'admin', 'user-management']"
+                    class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="feather feather-user w-4 h-4 mr-2"
+                      style="margin: 0 20px"
+                    >
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    Quản lý
                   </a>
                   <a
                     style="justify-content: flex-start"
@@ -492,7 +515,13 @@
           </ul>
         </li>
       </ul>
-      <i class="bi bi-list mobile-nav-toggle"></i>
+      <i (click)="activeNavMobile()" style="width: 20px; color: blue" class="bi bi-list mobile-nav-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+          <path
+            fill-rule="evenodd"
+            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+          /></svg
+      ></i>
     </nav>
     <!-- .navbar -->
   </div>
@@ -525,7 +554,34 @@
         <h3>Chọn gói để sử dụng</h3>
         <p>Click "Mua ngay" để mua Captcha ngay, 1 Captcha vẫn mua được!</p>
       </header>
-
+      <div class="row counters" style="margin-bottom: 30px" data-aos="fade-up" data-aos-delay="100">
+        <div id="important-notes-mw" class="tns-ovh">
+          <div class="tns-inner" id="important-notes-iw">
+            <div
+              class="tiny-slider tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal"
+              id="important-notes"
+              style="transition-duration: 0s; transform: translate3d(0%, 0px, 0px)"
+            >
+              <div
+                class="p-3 tns-item tns-slide-active"
+                style="
+                  background-clip: border-box;
+                  border: 0 solid rgba(34, 41, 47, 0.125);
+                  border-radius: 0.5rem;
+                  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+                "
+                id="important-notes-item0"
+              >
+                <div class="text-base font-medium truncate">Dịch vụ Captcha NRO</div>
+                <div class="text-gray-600 text-justify mt-1">
+                  Đăng kí dịch vụ giải Captcha giá rẻ khởi chạy ngay dự án của bạn với mức chi phí siêu rẻ, với công nghệ AI hiện đại có thể
+                  giải chính xác hơn 90% captcha.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="row row-eq-height justify-content-center">
         <div class="col-lg-4 mb-4">
           <div class="card" data-aos="zoom-in" data-aos-duration="600" data-aos-easing="ease-in-out" data-aos-delay="500">
@@ -605,35 +661,6 @@
           </div>
         </div>
       </div>
-
-      <div class="row counters" data-aos="fade-up" data-aos-delay="100">
-        <div id="important-notes-mw" class="tns-ovh">
-          <div class="tns-inner" id="important-notes-iw">
-            <div
-              class="tiny-slider tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal"
-              id="important-notes"
-              style="transition-duration: 0s; transform: translate3d(0%, 0px, 0px)"
-            >
-              <div
-                class="p-3 tns-item tns-slide-active"
-                style="
-                  background-clip: border-box;
-                  border: 0 solid rgba(34, 41, 47, 0.125);
-                  border-radius: 0.5rem;
-                  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-                "
-                id="important-notes-item0"
-              >
-                <div class="text-base font-medium truncate">Dịch vụ Captcha NRO</div>
-                <div class="text-gray-600 text-justify mt-1">
-                  Đăng kí dịch vụ giải Captcha giá rẻ khởi chạy ngay dự án của bạn với mức chi phí siêu rẻ, với công nghệ AI hiện đại có thể
-                  giải chính xác hơn 90% captcha.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
   <!-- End Why Us Section -->
@@ -642,59 +669,6 @@
 
 <!-- ======= Footer ======= -->
 <footer id="footer">
-  <div class="footer-top">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 footer-info">
-          <h3>eCaptcha</h3>
-          <p>
-            Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum
-            iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.
-          </p>
-        </div>
-
-        <div class="col-lg-2 col-md-6 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-6 footer-contact">
-          <h4>Contact Us</h4>
-          <p>
-            A108 Adam Street <br />
-            New York, NY 535022<br />
-            United States <br />
-            <strong>Phone:</strong> +1 5589 55488 55<br />
-            <strong>Email:</strong> info@example.com<br />
-          </p>
-
-          <div class="social-links">
-            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 footer-newsletter">
-          <h4>Our Newsletter</h4>
-          <p>
-            Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa
-            amet magna export quem marada parida nodela caramase seza.
-          </p>
-          <form action="" method="post"><input type="email" name="email" /><input type="submit" value="Subscribe" /></form>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="container">
     <div class="copyright">&copy; Copyright <strong>NewBiz</strong>. All Rights Reserved</div>
     <div class="credits">
