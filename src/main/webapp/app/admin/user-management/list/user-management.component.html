@@ -2,15 +2,42 @@
   <h2>
     <span id="user-management-page-heading" data-cy="userManagementPageHeading">Users</span>
 
+    <div class="d-flex justify-content-start">
+      <input type="text" [(ngModel)]="userName" style="margin: 10px; width: 200px; font-size: 21px; border-radius: 10px" />
+      <button
+        class="btn jh-create-entity"
+        style="background-color: bisque; border-radius: 10px; margin: 10px; border-color: black"
+        (click)="findUserByLogin(userName!)"
+      >
+        <span>Search User Name</span>
+      </button>
+    </div>
+
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="updateCaptcha()" [disabled]="isLoading">
+      <button
+        class="btn jh-create-entity"
+        style="background-color: rgb(245, 205, 157); border-radius: 10px; margin: 10px; border-color: black"
+        (click)="updateCaptcha()"
+        [disabled]="isLoading"
+      >
         <span>Update Captcha</span>
       </button>
-      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+
+      <button
+        class="btn jh-create-entity"
+        style="background-color: rgb(154, 255, 176); border-radius: 10px; margin: 10px; border-color: black"
+        (click)="loadAll()"
+        [disabled]="isLoading"
+      >
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Refresh List</span>
       </button>
-      <button class="btn btn-primary jh-create-entity" [routerLink]="['./new']">
+
+      <button
+        class="btn jh-create-entity"
+        style="background-color: rgb(58, 176, 255); border-radius: 10px; margin: 10px; border-color: black"
+        [routerLink]="['./new']"
+      >
         <fa-icon icon="plus"></fa-icon> <span>Create a new User</span>
       </button>
     </div>

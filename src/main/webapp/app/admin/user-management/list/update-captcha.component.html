@@ -7,20 +7,35 @@
       <h2 id="myUserLabel">Update Captcha</h2>
 
       <div class="mb-3">
-        <label class="form-label">User Name</label>
-        <input type="text" class="form-control" name="username" formControlName="username" />
+        <label class="form-label">Merchant Key</label>
+        <input
+          type="text"
+          class="form-control"
+          name="merchantKey"
+          formControlName="merchantKey"
+          style="border-radius: 7px; border: 0.5px solid"
+        />
         <div
           *ngIf="
-            updateCaptchaForm.get('username')!.invalid &&
-            (updateCaptchaForm.get('username')!.dirty || updateCaptchaForm.get('login')!.touched)
+            updateCaptchaForm.get('merchantKey')!.invalid &&
+            (updateCaptchaForm.get('merchantKey')!.dirty || updateCaptchaForm.get('merchantKey')!.touched)
           "
         >
-          <small class="form-text text-danger" *ngIf="updateCaptchaForm.get('username')?.errors?.required"> This field is required. </small>
+          <small class="form-text text-danger" *ngIf="updateCaptchaForm.get('merchantKey')?.errors?.required">
+            This field is required.
+          </small>
         </div>
       </div>
       <div class="mb-3">
         <label class="form-label">Captcha</label>
-        <input type="text" class="form-control" name="captcha" formControlName="captcha" />
+        <input
+          type="text"
+          class="form-control"
+          name="captcha"
+          [(ngModel)]="captcha"
+          formControlName="captcha"
+          style="border-radius: 7px; border: 0.5px solid"
+        />
         <div
           *ngIf="
             updateCaptchaForm.get('captcha')!.invalid &&
@@ -30,13 +45,17 @@
           <small class="form-text text-danger" *ngIf="updateCaptchaForm.get('captcha')?.errors?.required"> This field is required. </small>
         </div>
       </div>
-
       <div>
+        <label>Total Cost:</label>
+        {{ totalCost }} VND
+      </div>
+
+      <div style="margin-bottom: 20px">
         <button type="button" class="btn btn-secondary" (click)="clear()">
           <span>Cancel</span>
         </button>
 
-        <button type="submit" [disabled]="updateCaptchaForm.invalid" class="btn btn-primary">
+        <button type="submit" [disabled]="updateCaptchaForm.invalid" class="btn-save btn btn-primary">
           <span>Save</span>
         </button>
       </div>

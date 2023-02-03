@@ -151,7 +151,7 @@
                 Vui lòng nhập email của bạn.
               </small>
 
-              <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.invalid">
+              <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.pattern">
                 Vui lòng nhập đúng định dạng email.
               </small>
 

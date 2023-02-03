@@ -8,6 +8,7 @@ import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
 import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.service.dto.AdminUserDTO;
+import com.mycompany.myapp.service.dto.RemainingCaptcha;
 import com.mycompany.myapp.service.dto.UserDTO;
 import com.mycompany.myapp.web.rest.vm.UpdateCaptchaReq;
 import java.time.Instant;
@@ -104,7 +105,6 @@ public class UserService {
             // generate a random number between
             // 0 to AlphaNumericString variable length
             int index = (int) (AlphaNumericString.length() * Math.random());
-
             // add Character one by one in end of sb
             sb.append(AlphaNumericString.charAt(index));
         }
@@ -141,8 +141,8 @@ public class UserService {
         }
         newUser.setImageUrl(userDTO.getImageUrl());
         newUser.setLangKey(userDTO.getLangKey());
-        newUser.setMerchantKey(generateMerchantKey());
-        newUser.setCountCaptcha((long) 1000);
+        newUser.setMerchantKey(UUID.randomUUID().toString());
+        newUser.setCountCaptcha((long) 10);
         // new user is not active
         newUser.setActivated(true);
         // new user gets registration key
@@ -240,9 +240,9 @@ public class UserService {
     }
 
     public Optional<AdminUserDTO> updateCaptcha(UpdateCaptchaReq requestuserDTO) {
-        System.out.println("Updating Captcha: " + userRepository.findOneByLogin(requestuserDTO.getUsername()).get().getLogin());
+        // System.out.println("Updating Captcha: " + userRepository.findOneByLogin(requestuserDTO.getUsername()).get().getLogin());
         return Optional
-            .of(userRepository.findOneByLogin(requestuserDTO.getUsername()))
+            .of(userRepository.findOneByMerchantKey(requestuserDTO.getMerchantKey()))
             .filter(Optional::isPresent)
             .map(Optional::get)
             .map(user -> {
@@ -253,6 +253,14 @@ public class UserService {
                 return user;
             })
             .map(AdminUserDTO::new);
+    }
+
+    public RemainingCaptcha getRemainingCaptcha(String merchantKey) {
+        // log.debug("Getting Captcha: " + userRepository.findOneByLogin(username).get().getLogin());
+        Long count = userRepository.findOneByMerchantKey(merchantKey).get().getCountCaptcha();
+        System.out.println(" Captcha: " + count);
+
+        return new RemainingCaptcha(count);
     }
 
     public void deleteUser(String login) {

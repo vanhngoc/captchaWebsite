@@ -25,6 +25,7 @@ export class UserManagementComponent implements OnInit {
   page!: number;
   predicate!: string;
   ascending!: boolean;
+  userName?: string;
 
   constructor(
     private userService: UserManagementService,
@@ -66,6 +67,17 @@ export class UserManagementComponent implements OnInit {
       if (reason === 'deleted') {
         this.loadAll();
       }
+    });
+  }
+
+  findUserByLogin(login: string): void {
+    this.isLoading = true;
+    this.userService.find(login).subscribe({
+      next: (res: User) => {
+        this.isLoading = false;
+        this.users = [res];
+      },
+      error: () => (this.isLoading = false),
     });
   }
 

@@ -2,15 +2,15 @@ package com.mycompany.myapp.web.rest.vm;
 
 public class UpdateCaptchaReq {
 
-    private String username;
+    private String merchantKey;
     private Long captcha;
 
-    public String getUsername() {
-        return username;
+    public String getMerchantKey() {
+        return merchantKey;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String merchantKey) {
+        this.merchantKey = merchantKey;
     }
 
     public Long getCaptcha() {

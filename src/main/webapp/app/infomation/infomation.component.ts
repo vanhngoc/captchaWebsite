@@ -10,6 +10,8 @@ import { PasswordService } from './password.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { InfomationService } from './infomation.service';
+import { InfoCaptcha } from './infoCaptcha.model';
 
 @Component({
   selector: 'jhi-infomation',
@@ -19,7 +21,7 @@ import { ToastrService } from 'ngx-toastr';
 export class InfomationComponent implements OnInit {
   account: Account | null = null;
   account$?: Observable<Account | null>;
-
+  infoCaptcha: InfoCaptcha | null = null;
   doNotMatch = false;
   error = false;
   success = false;
@@ -39,14 +41,24 @@ export class InfomationComponent implements OnInit {
     private loginService: LoginService,
     private router: Router,
     private fb: FormBuilder,
-    private passwordService: PasswordService
+    private passwordService: PasswordService,
+    private infomationService: InfomationService
   ) {}
 
   ngOnInit(): void {
     this.accountService
       .getAuthenticationState()
       .pipe(takeUntil(this.destroy$))
-      .subscribe(account => (this.account = account));
+      .subscribe(
+        account => (
+          (this.account = account),
+          console.log(this.account!.merchantKey!),
+          this.infomationService.getDetail(this.account!.merchantKey!).subscribe(res => {
+            this.infoCaptcha = res;
+          })
+        )
+      );
+
     window.addEventListener('scroll', this.headerScrolled, true);
   }
 

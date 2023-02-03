@@ -354,6 +354,9 @@ section {
   .section-header p {
     width: 100%;
   }
+  section {
+    height: 1080px;
+  }
 }
 
 /* Section with background
@@ -524,6 +527,34 @@ section {
   border-radius: 0.5rem;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
   display: flex;
+}
+
+.history-order-container {
+  margin-top: 30px;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0 solid rgba(34, 41, 47, 0.125);
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.cell-1 {
+  border-collapse: separate;
+  border-spacing: 0 4em;
+  background: #fff;
+  border-bottom: 5px solid transparent;
+  /*background-color: gold;*/
+  background-clip: padding-box;
+}
+
+thead {
+  background: #dddcdc;
+}
+
+.badge-success {
+  background-color: #28a745;
+  color: #fff;
+  border-radius: 8px;
 }
 .w-10 {
   width: 2.5rem;

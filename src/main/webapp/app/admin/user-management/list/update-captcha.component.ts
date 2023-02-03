@@ -10,11 +10,13 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'jhi-update-captcha',
   templateUrl: './update-captcha.component.html',
+  styleUrls: ['./update-captcha.component.scss'],
 })
 export class UpdateCaptchaComponent implements OnInit {
+  captcha?: number;
   updateCaptcha?: UpdateCaptcha;
   updateCaptchaForm = this.fb.group({
-    username: ['', [Validators.required]],
+    merchantKey: ['', [Validators.required]],
     captcha: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
   });
 
@@ -33,6 +35,17 @@ export class UpdateCaptchaComponent implements OnInit {
   clear(): void {
     this.activeModal.dismiss('cancel');
   }
+
+  get totalCost(): number {
+    if (this.captcha! < 10000) {
+      return this.captcha! * 15;
+    } else if (this.captcha! >= 10000 && this.captcha! < 50000) {
+      return this.captcha! * 10;
+    } else {
+      return this.captcha! * 8;
+    }
+  }
+
   showToasterSuccessResg(): void {
     this.toastr.success('Update captcha thành công !!', 'Thông báo');
   }

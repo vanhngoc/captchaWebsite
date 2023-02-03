@@ -161,7 +161,7 @@ public class UserResource {
     @PostMapping("/updateCaptcha")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
     public ResponseEntity<AdminUserDTO> updateCaptcha(@RequestBody UpdateCaptchaReq requestupdateCaptchaRequest) {
-        log.debug("REST request to update captcha for User : {}", requestupdateCaptchaRequest.getUsername());
+        log.debug("REST request to update captcha for User : {}", requestupdateCaptchaRequest.getMerchantKey());
         Optional<AdminUserDTO> updatedUser = userService.updateCaptcha(requestupdateCaptchaRequest);
         return ResponseUtil.wrapOrNotFound(updatedUser);
     }

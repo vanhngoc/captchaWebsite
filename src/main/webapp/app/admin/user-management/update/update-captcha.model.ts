@@ -1,8 +1,8 @@
 export interface IUpdateCaptcha {
-  username: string;
+  merchantKey: string;
   captcha: number;
 }
 
 export class UpdateCaptcha implements IUpdateCaptcha {
-  constructor(public username: string, public captcha: number) {}
+  constructor(public merchantKey: string, public captcha: number) {}
 }

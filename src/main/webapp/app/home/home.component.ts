@@ -7,6 +7,8 @@ import AOS from 'aos';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 import { LoginService } from 'app/login/login.service';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from './modal.component';
 
 @Component({
   selector: 'jhi-home',
@@ -20,8 +22,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private accountService: AccountService,
     private router: Router,
-    private toastr: ToastrService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private modalService: NgbModal
   ) {
     if (sessionStorage.getItem('currentUser')) {
       // logged in so return true
@@ -76,5 +78,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     const dropdown = document.getElementById('dropdownUL')!;
     console.log(dropdown);
     dropdown.classList.toggle('dropdown-active');
+  }
+
+  openModal(): void {
+    this.modalService.open(ModalComponent, { size: 'lg', backdrop: 'static' });
+    console.log('modalRef');
   }
 }
