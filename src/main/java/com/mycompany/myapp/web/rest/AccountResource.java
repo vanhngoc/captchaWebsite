@@ -1,14 +1,18 @@
 package com.mycompany.myapp.web.rest;
 
+import com.mycompany.myapp.domain.HistoryOrder;
 import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.security.SecurityUtils;
+import com.mycompany.myapp.service.HistoryOrderService;
 import com.mycompany.myapp.service.MailService;
 import com.mycompany.myapp.service.UserService;
 import com.mycompany.myapp.service.dto.AdminUserDTO;
+import com.mycompany.myapp.service.dto.HistoryOrderDTO;
 import com.mycompany.myapp.service.dto.PasswordChangeDTO;
 import com.mycompany.myapp.service.dto.RemainingCaptcha;
 import com.mycompany.myapp.web.rest.errors.*;
+import com.mycompany.myapp.web.rest.vm.HistoryOrderRequest;
 import com.mycompany.myapp.web.rest.vm.KeyAndPasswordVM;
 import com.mycompany.myapp.web.rest.vm.ManagedUserVM;
 import java.util.*;
@@ -42,10 +46,18 @@ public class AccountResource {
 
     private final MailService mailService;
 
-    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
+    private final HistoryOrderService historyOrderService;
+
+    public AccountResource(
+        UserRepository userRepository,
+        UserService userService,
+        MailService mailService,
+        HistoryOrderService historyOrderService
+    ) {
         this.userRepository = userRepository;
         this.userService = userService;
         this.mailService = mailService;
+        this.historyOrderService = historyOrderService;
     }
 
     /**
@@ -196,5 +208,10 @@ public class AccountResource {
             password.length() < ManagedUserVM.PASSWORD_MIN_LENGTH ||
             password.length() > ManagedUserVM.PASSWORD_MAX_LENGTH
         );
+    }
+
+    @GetMapping("/account/get-history-order")
+    public List<HistoryOrderDTO> getHistoryOrder() {
+        return historyOrderService.getHistoryOrders();
     }
 }

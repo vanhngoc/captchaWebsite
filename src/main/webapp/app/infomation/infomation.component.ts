@@ -12,6 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { InfomationService } from './infomation.service';
 import { InfoCaptcha } from './infoCaptcha.model';
+import { HistoryOrder } from './HistoryOrder.model';
 
 @Component({
   selector: 'jhi-infomation',
@@ -25,6 +26,7 @@ export class InfomationComponent implements OnInit {
   doNotMatch = false;
   error = false;
   success = false;
+  historyOrders: HistoryOrder[] = [];
 
   passwordForm = this.fb.group({
     currentPassword: ['', [Validators.required]],
@@ -52,7 +54,9 @@ export class InfomationComponent implements OnInit {
       .subscribe(
         account => (
           (this.account = account),
-          console.log(this.account!.merchantKey!),
+          this.infomationService.getHistoryOrders().subscribe(res => {
+            this.historyOrders = res;
+          }),
           this.infomationService.getDetail(this.account!.merchantKey!).subscribe(res => {
             this.infoCaptcha = res;
           })
@@ -60,12 +64,29 @@ export class InfomationComponent implements OnInit {
       );
 
     window.addEventListener('scroll', this.headerScrolled, true);
+    console.log(new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(1000));
   }
 
   logout(): void {
     this.loginService.logout();
     this.router.navigate(['']);
   }
+
+  formatDateTime(date: Date): string {
+    const d = new Date(date);
+    const day = d.getDate();
+    const month = d.getMonth() + 1;
+    const year = d.getFullYear();
+    const hour = d.getHours();
+    const minute = d.getMinutes();
+    const second = d.getSeconds();
+    return `${day}/${month}/${year} ${hour}:${minute}:${second}`;
+  }
+
+  formatCurrency(value: number): string {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+  }
+
   headerScrolled(): void {
     const y = window.scrollY;
     if (y > 100) {

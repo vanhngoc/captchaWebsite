@@ -3,7 +3,10 @@ package com.mycompany.myapp.web.rest.vm;
 public class UpdateCaptchaReq {
 
     private String merchantKey;
+
     private Long captcha;
+
+    private Integer totalCost;
 
     public String getMerchantKey() {
         return merchantKey;
@@ -19,5 +22,13 @@ public class UpdateCaptchaReq {
 
     public void setCaptcha(Long captcha) {
         this.captcha = captcha;
+    }
+
+    public Integer getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(Integer totalCost) {
+        this.totalCost = totalCost;
     }
 }

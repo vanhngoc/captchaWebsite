@@ -287,21 +287,15 @@
               </tr>
             </thead>
             <tbody class="table-body">
-              <tr class="cell-1">
-                <td class="text-center">1</td>
-                <td>#SO-13487</td>
-                <td>Gasper Antunes</td>
-                <td><span class="badge badge-success">Succes</span></td>
-                <td>$2674.00</td>
-                <td>Today</td>
-              </tr>
-              <tr class="cell-1">
-                <td class="text-center">2</td>
-                <td>#SO-13453</td>
-                <td>Aartsen van</td>
-                <td><span class="badge badge-info">Confirmed</span></td>
-                <td>$3454.00</td>
-                <td>Yesterday</td>
+              <tr class="cell-1" *ngFor="let historyOrder of historyOrders">
+                <td class="text-center">{{ historyOrder.orderId }}</td>
+                <td>{{ historyOrder.orderNumber }}</td>
+                <td>{{ historyOrder.quantityCaptcha }}</td>
+                <td>{{ formatCurrency(historyOrder.totalCost!) }}</td>
+                <td>
+                  <span class="badge badge-success">{{ historyOrder.orderStatus }}</span>
+                </td>
+                <td>{{ formatDateTime(historyOrder!.createdDate!) }}</td>
               </tr>
             </tbody>
           </table>

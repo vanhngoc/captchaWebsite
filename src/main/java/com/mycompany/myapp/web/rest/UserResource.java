@@ -1,15 +1,18 @@
 package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.config.Constants;
+import com.mycompany.myapp.domain.HistoryOrder;
 import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
+import com.mycompany.myapp.service.HistoryOrderService;
 import com.mycompany.myapp.service.MailService;
 import com.mycompany.myapp.service.UserService;
 import com.mycompany.myapp.service.dto.AdminUserDTO;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import com.mycompany.myapp.web.rest.errors.EmailAlreadyUsedException;
 import com.mycompany.myapp.web.rest.errors.LoginAlreadyUsedException;
+import com.mycompany.myapp.web.rest.vm.HistoryOrderRequest;
 import com.mycompany.myapp.web.rest.vm.UpdateCaptchaReq;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -88,10 +91,18 @@ public class UserResource {
 
     private final MailService mailService;
 
-    public UserResource(UserService userService, UserRepository userRepository, MailService mailService) {
+    private final HistoryOrderService historyOrderService;
+
+    public UserResource(
+        UserService userService,
+        UserRepository userRepository,
+        MailService mailService,
+        HistoryOrderService historyOrderService
+    ) {
         this.userService = userService;
         this.userRepository = userRepository;
         this.mailService = mailService;
+        this.historyOrderService = historyOrderService;
     }
 
     /**
@@ -163,6 +174,12 @@ public class UserResource {
     public ResponseEntity<AdminUserDTO> updateCaptcha(@RequestBody UpdateCaptchaReq requestupdateCaptchaRequest) {
         log.debug("REST request to update captcha for User : {}", requestupdateCaptchaRequest.getMerchantKey());
         Optional<AdminUserDTO> updatedUser = userService.updateCaptcha(requestupdateCaptchaRequest);
+        HistoryOrderRequest request = new HistoryOrderRequest(
+            requestupdateCaptchaRequest.getMerchantKey(),
+            requestupdateCaptchaRequest.getCaptcha(),
+            requestupdateCaptchaRequest.getTotalCost()
+        );
+        HistoryOrder historyOrder = historyOrderService.addHistoryOrder(request);
         return ResponseUtil.wrapOrNotFound(updatedUser);
     }
 
@@ -216,6 +233,23 @@ public class UserResource {
         return ResponseEntity
             .noContent()
             .headers(HeaderUtil.createAlert(applicationName, "A user is deleted with identifier " + login, login))
+            .build();
+    }
+
+    @PostMapping("/add-history-order")
+    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
+    public ResponseEntity<Void> addHistoryOrder(@RequestBody HistoryOrderRequest request) {
+        log.debug("REST request to add history order for User : {}", request.getMerchantKey());
+        HistoryOrder historyOrder = historyOrderService.addHistoryOrder(request);
+        return ResponseEntity
+            .noContent()
+            .headers(
+                HeaderUtil.createAlert(
+                    applicationName,
+                    "A history order is added with identifier " + request.getMerchantKey(),
+                    request.getMerchantKey()
+                )
+            )
             .build();
     }
 }

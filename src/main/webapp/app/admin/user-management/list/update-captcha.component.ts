@@ -18,6 +18,7 @@ export class UpdateCaptchaComponent implements OnInit {
   updateCaptchaForm = this.fb.group({
     merchantKey: ['', [Validators.required]],
     captcha: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+    totalCost: [''],
   });
 
   constructor(
@@ -53,7 +54,7 @@ export class UpdateCaptchaComponent implements OnInit {
     this.spinner.show();
 
     this.updateCaptcha = this.updateCaptchaForm.value;
-
+    this.updateCaptcha!.totalCost = this.totalCost;
     this.userMgn.updateCaptcha(this.updateCaptchaForm.value).subscribe({
       next: () => {
         setTimeout(() => {
