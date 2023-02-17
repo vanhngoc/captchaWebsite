@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvnw package -Pprod -DskipTests'
+                sh 'mvn package -Pprod -DskipTests'
             }
         }
 
