@@ -84,6 +84,17 @@
               <input type="password" minlength="4" class="input-field" autocomplete="off" required formControlName="password" />
               <label>Mật khẩu</label>
             </div>
+            <div style="margin-bottom: 10px">
+              <input
+                style="margin-top: 5px"
+                class="form-check-input"
+                type="checkbox"
+                name="rememberMe"
+                id="rememberMe"
+                formControlName="rememberMe"
+              />
+              <span>Remember me</span>
+            </div>
 
             <input type="submit" [disabled]="loginForm.get('username')!.invalid || loginForm.invalid" value="Đăng nhập" class="sign-btn" />
 

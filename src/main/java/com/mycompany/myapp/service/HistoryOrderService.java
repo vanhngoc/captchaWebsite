@@ -15,6 +15,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -65,5 +67,9 @@ public class HistoryOrderService {
             historyOrdersDTO.add(historyOrderDTO);
         }
         return historyOrdersDTO;
+    }
+
+    public Page<HistoryOrderDTO> getAllHistoryOrder(Pageable pageable) {
+        return historyOrderRespository.findAll(pageable).map(HistoryOrderDTO::new);
     }
 }

@@ -1,0 +1,35 @@
+<div class="row statistical-captcha">
+  <div class="table-responsive table-borderless" style="padding: 0">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center">#</th>
+          <th>Order #</th>
+          <th>User Name</th>
+          <th>Captcha</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Created Date</th>
+          <th>Created By</th>
+        </tr>
+      </thead>
+      <tbody class="table-body" style="font-weight: 400">
+        <tr class="cell-1" *ngFor="let historyOrder of historyOrders | paginate: { itemsPerPage: 10, currentPage: page }; let i = index">
+          <td class="text-center">{{ i + 1 }}</td>
+          <td>{{ historyOrder.orderNumber }}</td>
+          <td>{{ trackUser(historyOrder.user!) }}</td>
+          <td>{{ historyOrder.quantityCaptcha }}</td>
+          <td>{{ formatCurrency(historyOrder.totalCost!) }}</td>
+          <td>
+            <span class="badge badge-success">{{ historyOrder.orderStatus }}</span>
+          </td>
+          <td>{{ formatDateTime(historyOrder!.createdDate!) }}</td>
+          <td>{{ historyOrder.createdBy }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="has-text-centered" style="text-align: center">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div>
+</div>

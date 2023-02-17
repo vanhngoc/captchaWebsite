@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Account } from 'app/core/auth/account.model';
 import { AccountService } from 'app/core/auth/account.service';
+import { InfoCaptcha } from 'app/infomation/infoCaptcha.model';
+import { InfomationService } from 'app/infomation/infomation.service';
 import { LoginService } from 'app/login/login.service';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -12,15 +14,30 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class DocumentApiComponent implements OnInit {
   account: Account | null = null;
+
+  infoCaptcha: InfoCaptcha | null = null;
+
   private readonly destroy$ = new Subject<void>();
 
-  constructor(private accountService: AccountService, private loginService: LoginService, private router: Router) {}
+  constructor(
+    private accountService: AccountService,
+    private loginService: LoginService,
+    private router: Router,
+    private infomationService: InfomationService
+  ) {}
 
   ngOnInit(): void {
     this.accountService
       .getAuthenticationState()
       .pipe(takeUntil(this.destroy$))
-      .subscribe(account => (this.account = account));
+      .subscribe(
+        account => (
+          (this.account = account),
+          this.infomationService.getDetail(this.account!.merchantKey!).subscribe(res => {
+            this.infoCaptcha = res;
+          })
+        )
+      );
     window.addEventListener('scroll', this.headerScrolled, true);
   }
 
@@ -38,6 +55,7 @@ export class DocumentApiComponent implements OnInit {
       header.classList.remove('header-scrolled');
     }
   }
+
   activeNavMobile(): void {
     const navbar = document.getElementById('navbar')!;
     navbar.classList.toggle('navbar-mobile');

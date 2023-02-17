@@ -21,6 +21,21 @@ public class HistoryOrderDTO {
 
     private Instant createdDate;
 
+    private String createdBy;
+
+    public HistoryOrderDTO() {}
+
+    public HistoryOrderDTO(HistoryOrder order) {
+        this.orderId = order.getOrderId();
+        this.orderNumber = order.getOrderNumber();
+        this.quantityCaptcha = order.getQuantityCaptcha();
+        this.totalCost = order.getTotalCost();
+        this.orderStatus = order.getOrderStatus();
+        this.user = order.getUser();
+        this.createdDate = order.getCreatedDate();
+        this.createdBy = order.getCreatedBy();
+    }
+
     public HistoryOrderDTO(
         Long orderId,
         String orderNumber,
@@ -28,7 +43,8 @@ public class HistoryOrderDTO {
         Integer totalCost,
         String orderStatus,
         User user,
-        Instant createdDate
+        Instant createdDate,
+        String createdBy
     ) {
         this.orderId = orderId;
         this.orderNumber = orderNumber;
@@ -37,6 +53,7 @@ public class HistoryOrderDTO {
         this.orderStatus = orderStatus;
         this.user = user;
         this.createdDate = createdDate;
+        this.createdBy = createdBy;
     }
 
     public static HistoryOrderDTO toHistoryOrderDTOs(HistoryOrder order) {
@@ -47,7 +64,8 @@ public class HistoryOrderDTO {
             order.getTotalCost(),
             order.getOrderStatus(),
             order.getUser(),
-            order.getCreatedDate()
+            order.getCreatedDate(),
+            order.getCreatedBy()
         );
     }
 
@@ -105,5 +123,13 @@ public class HistoryOrderDTO {
 
     public void setCreatedDate(Instant createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 }

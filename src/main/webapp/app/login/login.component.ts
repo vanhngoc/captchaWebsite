@@ -9,6 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from 'app/config/error.constants';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'jhi-login',
   templateUrl: './login.component.html',
@@ -63,17 +64,29 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private registerService: RegisterService,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private cookieService: CookieService
   ) {}
 
   ngOnInit(): void {
     // if already authenticated then navigate to home page
+    this.checkLogin();
     this.accountService.identity().subscribe(() => {
       if (this.accountService.isAuthenticated()) {
         this.router.navigate(['']);
       }
     });
     this.activeInput();
+  }
+
+  checkLogin(): void {
+    const rememberedUsername = this.cookieService.get('username');
+    const rememberedPassword = this.cookieService.get('password');
+    if (rememberedUsername && rememberedPassword) {
+      this.loginForm.get('username')!.setValue(this.cookieService.get('username'));
+      this.loginForm.get('password')!.setValue(this.cookieService.get('password'));
+      this.loginForm.get('rememberMe')!.setValue(true);
+    }
   }
 
   showToasterSuccessResg(): void {
@@ -123,9 +136,13 @@ export class LoginComponent implements OnInit {
   activeInput(): void {
     const inputs = document.querySelectorAll('.input-field');
     inputs.forEach(inp => {
-      inp.addEventListener('focus', () => {
+      if (inp.nodeValue !== '') {
         inp.classList.add('active');
-      });
+      } else {
+        inp.addEventListener('focus', () => {
+          inp.classList.add('active');
+        });
+      }
       inp.addEventListener('blur', () => {
         if (inp.nodeValue !== '') {
           return;

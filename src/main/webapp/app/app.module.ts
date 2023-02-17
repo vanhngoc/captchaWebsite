@@ -27,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AuthGuard } from './core/auth/auth-guard';
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   imports: [
     BrowserModule,
@@ -44,6 +45,7 @@ import { AuthGuard } from './core/auth/auth-guard';
   ],
   providers: [
     AuthGuard,
+    CookieService,
     Title,
     { provide: LOCALE_ID, useValue: 'en' },
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },

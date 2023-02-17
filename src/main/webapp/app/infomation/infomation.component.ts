@@ -27,6 +27,8 @@ export class InfomationComponent implements OnInit {
   error = false;
   success = false;
   historyOrders: HistoryOrder[] = [];
+  page = 1;
+  pageSize = 10;
 
   passwordForm = this.fb.group({
     currentPassword: ['', [Validators.required]],
@@ -64,7 +66,7 @@ export class InfomationComponent implements OnInit {
       );
 
     window.addEventListener('scroll', this.headerScrolled, true);
-    console.log(new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(1000));
+    // console.log(new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(1000));
   }
 
   logout(): void {

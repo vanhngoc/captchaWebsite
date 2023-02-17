@@ -17,9 +17,10 @@ export class UpdateCaptchaComponent implements OnInit {
   updateCaptcha?: UpdateCaptcha;
   updateCaptchaForm = this.fb.group({
     merchantKey: ['', [Validators.required]],
-    captcha: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-    totalCost: [''],
+    captcha: [''],
+    totalCost: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
   });
+  totalCost?: number;
 
   constructor(
     private activeModal: NgbActiveModal,
@@ -37,13 +38,23 @@ export class UpdateCaptchaComponent implements OnInit {
     this.activeModal.dismiss('cancel');
   }
 
-  get totalCost(): number {
-    if (this.captcha! < 10000) {
-      return this.captcha! * 15;
-    } else if (this.captcha! >= 10000 && this.captcha! < 50000) {
-      return this.captcha! * 10;
+  // get totalCost(): number {
+  //   if (this.captcha! < 10000) {
+  //     return this.captcha! * 15;
+  //   } else if (this.captcha! >= 10000 && this.captcha! < 50000) {
+  //     return this.captcha! * 10;
+  //   } else {
+  //     return this.captcha! * 8;
+  //   }
+  // }
+
+  get numberCaptcha(): number {
+    if (this.totalCost! < 100000) {
+      return Math.round(this.totalCost! / 15 + (this.totalCost! / 15) * 0.25);
+    } else if (this.totalCost! >= 100000 && this.totalCost! < 400000) {
+      return Math.round(this.totalCost! / 10 + (this.totalCost! / 10) * 0.25);
     } else {
-      return this.captcha! * 8;
+      return Math.round(this.totalCost! / 8 + (this.totalCost! / 8) * 0.25);
     }
   }
 
@@ -54,7 +65,7 @@ export class UpdateCaptchaComponent implements OnInit {
     this.spinner.show();
 
     this.updateCaptcha = this.updateCaptchaForm.value;
-    this.updateCaptcha!.totalCost = this.totalCost;
+    this.updateCaptcha!.captcha = this.numberCaptcha;
     this.userMgn.updateCaptcha(this.updateCaptchaForm.value).subscribe({
       next: () => {
         setTimeout(() => {

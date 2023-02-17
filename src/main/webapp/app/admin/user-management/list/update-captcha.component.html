@@ -27,27 +27,29 @@
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">Captcha</label>
+        <label class="form-label">Total cost (VNĐ)</label>
         <input
           type="text"
           class="form-control"
-          name="captcha"
-          [(ngModel)]="captcha"
-          formControlName="captcha"
+          name="totalCost"
+          [(ngModel)]="totalCost"
+          formControlName="totalCost"
           style="border-radius: 7px; border: 0.5px solid"
         />
         <div
           *ngIf="
-            updateCaptchaForm.get('captcha')!.invalid &&
-            (updateCaptchaForm.get('captcha')!.dirty || updateCaptchaForm.get('login')!.touched)
+            updateCaptchaForm.get('totalCost')!.invalid &&
+            (updateCaptchaForm.get('totalCost')!.dirty || updateCaptchaForm.get('totalCost')!.touched)
           "
         >
-          <small class="form-text text-danger" *ngIf="updateCaptchaForm.get('captcha')?.errors?.required"> This field is required. </small>
+          <small class="form-text text-danger" *ngIf="updateCaptchaForm.get('totalCost')?.errors?.required">
+            This field is required.
+          </small>
         </div>
       </div>
       <div>
-        <label>Total Cost:</label>
-        {{ totalCost }} VND
+        <label>Captcha quantity:</label>
+        {{ numberCaptcha }}
       </div>
 
       <div style="margin-bottom: 20px">
