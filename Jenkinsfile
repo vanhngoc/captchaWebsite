@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat 'mvn package -Pprod -DskipTests'
+                bat 'mvn package -Pprod -DskipTests=true'
             }
         }
 
