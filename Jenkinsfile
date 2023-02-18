@@ -3,9 +3,14 @@ pipeline {
     
     
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/vanhngoc/captchaWebsite.git'
+            }
+        }
         stage('Build') {
             steps {
-                sh 'mvn package -Pprod -DskipTests'
+                bat 'mvn package -Pprod -DskipTests'
             }
         }
 
