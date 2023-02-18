@@ -8,6 +8,11 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/vanhngoc/captchaWebsite.git'
             }
         }
+        stage('Bnstall') {
+            steps {
+                bat 'npm install --force'
+            }
+        }
         stage('Build') {
             steps {
                 bat 'mvn package -Pprod -DskipTests'
