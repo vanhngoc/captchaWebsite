@@ -50,7 +50,7 @@ public class AdminUserDTO {
 
     private String merchant_key;
 
-    private Long count_captcha;
+    private Long countCaptcha;
 
     public AdminUserDTO() {
         // Empty constructor needed for Jackson.
@@ -71,7 +71,7 @@ public class AdminUserDTO {
         this.lastModifiedDate = user.getLastModifiedDate();
         this.authorities = user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toSet());
         this.merchant_key = user.getMerchantKey();
-        this.count_captcha = user.getCountCaptcha();
+        this.countCaptcha = user.getCountCaptcha();
     }
 
     public Long getId() {
@@ -187,11 +187,11 @@ public class AdminUserDTO {
     }
 
     public Long getCountCaptcha() {
-        return count_captcha;
+        return countCaptcha;
     }
 
     public void setCountCaptcha(Long countCaptcha) {
-        this.count_captcha = countCaptcha;
+        this.countCaptcha = countCaptcha;
     }
 
     // prettier-ignore

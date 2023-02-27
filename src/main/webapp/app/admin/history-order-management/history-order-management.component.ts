@@ -16,8 +16,8 @@ import { User } from '../user-management/user-management.model';
 export class HistoryOrderManagementComponent implements OnInit {
   isLoading = false;
 
-  itemsPerPage = 20;
-  page = 1;
+  itemsPerPage!: number | undefined;
+  page!: number | undefined; //;
   predicate!: string;
   totalItems = 0;
   ascending!: boolean;
@@ -34,18 +34,26 @@ export class HistoryOrderManagementComponent implements OnInit {
     this.isLoading = true;
     this.historyService
       .query({
-        page: this.page - 1,
-        size: this.itemsPerPage,
+        page: 0,
+        size: 1000,
         sort: [],
       })
       .subscribe({
         next: (res: HttpResponse<IHistoryOrderManagement[]>) => {
           this.isLoading = false;
           this.onSuccess(res.body, res.headers);
-          console.log(res.body);
         },
         error: () => (this.isLoading = false),
       });
+  }
+  transition(): void {
+    this.router.navigate(['./'], {
+      relativeTo: this.activatedRoute.parent,
+      queryParams: {
+        page: this.page,
+        sort: null,
+      },
+    });
   }
   formatDateTime(date: Date): string {
     const d = new Date(date);

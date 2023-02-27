@@ -322,6 +322,11 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
+    public Page<User> getAllManagedUsersTest(Pageable pageable) {
+        return userRepository.findAll(pageable);
+    }
+
+    @Transactional(readOnly = true)
     public Page<UserDTO> getAllPublicUsers(Pageable pageable) {
         return userRepository.findAllByIdNotNullAndActivatedIsTrue(pageable).map(UserDTO::new);
     }

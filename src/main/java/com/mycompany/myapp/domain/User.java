@@ -74,11 +74,9 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private String activationKey;
 
     @Column(name = "merchant_key")
-    @JsonIgnore
     private String merchantKey;
 
     @Column(name = "count_captcha")
-    @JsonIgnore
     private Long countCaptcha;
 
     @Size(max = 20)

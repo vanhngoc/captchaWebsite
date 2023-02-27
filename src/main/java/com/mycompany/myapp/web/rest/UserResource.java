@@ -77,7 +77,8 @@ public class UserResource {
             "createdBy",
             "createdDate",
             "lastModifiedBy",
-            "lastModifiedDate"
+            "lastModifiedDate",
+            "countCaptcha"
         )
     );
 
@@ -199,6 +200,19 @@ public class UserResource {
         }
 
         final Page<AdminUserDTO> page = userService.getAllManagedUsers(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/usersTest")
+    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
+    public ResponseEntity<List<User>> getAllUsersTest(Pageable pageable) {
+        log.debug("REST request to get all User for an admin");
+        if (!onlyContainsAllowedProperties(pageable)) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        final Page<User> page = userService.getAllManagedUsersTest(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

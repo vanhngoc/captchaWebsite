@@ -53,6 +53,7 @@
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="transition()">
           <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="login"><span>Login</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="countCaptcha">Remaining captcha <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col"></th>
           <th scope="col"><span>Profiles</span></th>
@@ -68,6 +69,7 @@
             <a [routerLink]="['./', user.login, 'view']">{{ user.id }}</a>
           </td>
           <td>{{ user.login }}</td>
+          <td>{{ user.countCaptcha }}</td>
           <td>{{ user.email }}</td>
           <td>
             <button class="btn btn-danger btn-sm" (click)="setActive(user, true)" *ngIf="!user.activated">Deactivated</button>

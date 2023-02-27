@@ -30,6 +30,6 @@
     </table>
   </div>
   <div class="has-text-centered" style="text-align: center">
-    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    <pagination-controls (maxSize)="(totalItems)" (pageChange)="page = $event"></pagination-controls>
   </div>
 </div>
