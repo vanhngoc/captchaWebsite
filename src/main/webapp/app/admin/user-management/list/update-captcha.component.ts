@@ -50,11 +50,11 @@ export class UpdateCaptchaComponent implements OnInit {
 
   get numberCaptcha(): number {
     if (this.totalCost! < 100000) {
-      return Math.round(this.totalCost! / 15 + (this.totalCost! / 15) * 0.25);
+      return Math.round(this.totalCost! / 15);
     } else if (this.totalCost! >= 100000 && this.totalCost! < 400000) {
-      return Math.round(this.totalCost! / 10 + (this.totalCost! / 10) * 0.25);
+      return Math.round(this.totalCost! / 10);
     } else {
-      return Math.round(this.totalCost! / 8 + (this.totalCost! / 8) * 0.25);
+      return Math.round(this.totalCost! / 8);
     }
   }
 

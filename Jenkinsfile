@@ -8,11 +8,11 @@ pipeline {
         //         git branch: 'main', url: 'https://github.com/vanhngoc/captchaWebsite.git'
         //     }
         // }
-        stage('Bnstall') {
-            steps {
-                sh 'npm install --force'
-            }
-        }
+        // stage('Bnstall') {
+        //     steps {
+        //         sh 'npm install --force'
+        //     }
+        // }
         stage('Build') {
             steps {
                 sh 'mvn package -Pprod -DskipTests=true'
