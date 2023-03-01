@@ -10,12 +10,12 @@ pipeline {
         }
         stage('Bnstall') {
             steps {
-                sh 'npm install --force'
+                bat 'npm install --force'
             }
         }
         stage('Build') {
             steps {
-                sh 'mvn package -Pprod -DskipTests=true'
+                bat 'mvn package -Pprod -DskipTests=true'
             }
         }
         stage('Build-docker') {
