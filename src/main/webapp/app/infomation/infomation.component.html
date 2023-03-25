@@ -257,21 +257,23 @@
           </div>
           <div class="mt-4 text-slate-500" style="font-weight: 400">Thống kê số lượng captcha của bạn</div>
         </div>
-        <!-- <div
+        <div
           style="border-left: 1px solid rgb(0, 0, 0)"
           class="px-8 py-12 flex flex-col justify-center flex-1 border-t sm:border-t-0 sm:border-l border-slate-200 dark:border-darkmode-300 border-dashed"
         >
-          <div class="text-slate-500 text-xs">TỔNG CAPTCHA</div>
-          <div class="mt-1.5 flex items-center"><div class="text-base">0</div></div>
-          <div class="text-slate-500 text-xs mt-5">ĐÃ DÙNG</div>
+          <div class="text-slate-500 text-xs">CAPTCHA đã dùng trong ngày</div>
+          <div class="mt-1.5 flex items-center">
+            <div class="text-base">{{ captchaUsage }}</div>
+          </div>
+          <!-- <div class="text-slate-500 text-xs mt-5">ĐÃ DÙNG</div>
           <div class="mt-1.5 flex items-center"><div class="text-base">0</div></div>
           <div class="text-slate-500 text-xs mt-5">CAPTCHA CÒN LẠI</div>
           <div class="mt-1.5 flex items-center">
             <div class="text-base" style="letter-spacing: 2px">{{ account?.countCaptcha }}</div>
-          </div>
+          </div> -->
           <div class="text-slate-500 text-xs mt-5">TRẠNG THÁI</div>
           <div class="mt-1.5 flex items-center"><div class="text-base">Hoạt động</div></div>
-        </div> -->
+        </div>
       </div>
       <div class="row statistical-captcha">
         <div class="table-responsive table-borderless" style="padding: 0">

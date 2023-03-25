@@ -1,6 +1,7 @@
 package com.mycompany.myapp;
 
 import com.mycompany.myapp.config.ApplicationProperties;
+import com.mycompany.myapp.service.UserCaptchaHistoryService;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
@@ -10,6 +11,7 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
@@ -25,6 +27,9 @@ public class CaptchaWebApp {
     private static final Logger log = LoggerFactory.getLogger(CaptchaWebApp.class);
 
     private final Environment env;
+
+    @Autowired
+    private UserCaptchaHistoryService userCaptchaHistoryService;
 
     public CaptchaWebApp(Environment env) {
         this.env = env;
@@ -56,6 +61,8 @@ public class CaptchaWebApp {
                 "You have misconfigured your application! It should not " + "run with both the 'dev' and 'cloud' profiles at the same time."
             );
         }
+
+        userCaptchaHistoryService.getAllUserCaptchaHisByUserId();
     }
 
     /**

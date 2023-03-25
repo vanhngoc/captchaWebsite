@@ -23,6 +23,11 @@
 
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
+FROM ubuntu:latest
+RUN apt-get update && apt-get install -y tzdata
+RUN ln -sf /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
+RUN echo "Asia/Ho_Chi_Minh" > /etc/timezone
+
 FROM adoptopenjdk/openjdk11:jdk-11.0.10_9-alpine
 
 # Set the working directory
@@ -32,7 +37,7 @@ WORKDIR /app
 COPY target/*.jar app.jar
 
 # Expose the port that the app will listen on
-EXPOSE 8090
+EXPOSE 8089
 
 # Run the app
 CMD ["java", "-jar", "app.jar"]

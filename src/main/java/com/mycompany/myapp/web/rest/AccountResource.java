@@ -2,10 +2,13 @@ package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.domain.HistoryOrder;
 import com.mycompany.myapp.domain.User;
+import com.mycompany.myapp.domain.UserCaptchaHistory;
 import com.mycompany.myapp.repository.UserRepository;
+import com.mycompany.myapp.security.AuthoritiesConstants;
 import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.service.HistoryOrderService;
 import com.mycompany.myapp.service.MailService;
+import com.mycompany.myapp.service.UserCaptchaHistoryService;
 import com.mycompany.myapp.service.UserService;
 import com.mycompany.myapp.service.dto.AdminUserDTO;
 import com.mycompany.myapp.service.dto.HistoryOrderDTO;
@@ -15,6 +18,7 @@ import com.mycompany.myapp.web.rest.errors.*;
 import com.mycompany.myapp.web.rest.vm.HistoryOrderRequest;
 import com.mycompany.myapp.web.rest.vm.KeyAndPasswordVM;
 import com.mycompany.myapp.web.rest.vm.ManagedUserVM;
+import com.mycompany.myapp.web.rest.vm.UserCaptchaHisReq;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -22,6 +26,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -48,16 +53,20 @@ public class AccountResource {
 
     private final HistoryOrderService historyOrderService;
 
+    private final UserCaptchaHistoryService userCaptchaHistoryService;
+
     public AccountResource(
         UserRepository userRepository,
         UserService userService,
         MailService mailService,
-        HistoryOrderService historyOrderService
+        HistoryOrderService historyOrderService,
+        UserCaptchaHistoryService userCaptchaHistoryService
     ) {
         this.userRepository = userRepository;
         this.userService = userService;
         this.mailService = mailService;
         this.historyOrderService = historyOrderService;
+        this.userCaptchaHistoryService = userCaptchaHistoryService;
     }
 
     /**
@@ -213,5 +222,21 @@ public class AccountResource {
     @GetMapping("/account/get-history-order")
     public List<HistoryOrderDTO> getHistoryOrder() {
         return historyOrderService.getHistoryOrders();
+    }
+
+    @GetMapping("/account/get-captcha-history")
+    public void getAllUserCaptchaHistory() {
+        userCaptchaHistoryService.getAllUserCaptchaHisByUserId();
+    }
+
+    @GetMapping("/account/get-captcha-usage-history")
+    public Integer getAllUserCaptchaHistoryCahce(@RequestParam("merchantKey") String merchantKey) {
+        return userCaptchaHistoryService.viewCachedData(merchantKey);
+    }
+
+    @PostMapping("/admin/account/save-captcha-history")
+    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
+    public void saveUserCaptchaHistory(@RequestBody UserCaptchaHisReq userCaptchaHisReq) {
+        userCaptchaHistoryService.saveUserCaptchaHis(userCaptchaHisReq);
     }
 }

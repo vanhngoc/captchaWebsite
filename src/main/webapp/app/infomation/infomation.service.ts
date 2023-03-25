@@ -21,4 +21,11 @@ export class InfomationService {
   getHistoryOrders(): Observable<HistoryOrder[]> {
     return this.http.get<HistoryOrder[]>(this.applicationConfigService.getEndpointFor('api/account/get-history-order'), {});
   }
+
+  getCatchaUsage(merchantKey: string): Observable<number> {
+    return this.http.get<number>(
+      this.applicationConfigService.getEndpointFor('api/account/get-captcha-usage-history?merchantKey=' + merchantKey),
+      {}
+    );
+  }
 }

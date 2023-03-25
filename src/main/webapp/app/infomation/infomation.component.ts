@@ -29,7 +29,7 @@ export class InfomationComponent implements OnInit {
   historyOrders: HistoryOrder[] = [];
   page = 1;
   pageSize = 10;
-
+  captchaUsage: number | undefined;
   passwordForm = this.fb.group({
     currentPassword: ['', [Validators.required]],
     newPassword: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
@@ -61,7 +61,18 @@ export class InfomationComponent implements OnInit {
           }),
           this.infomationService.getDetail(this.account!.merchantKey!).subscribe(res => {
             this.infoCaptcha = res;
-          })
+          }),
+          this.infomationService.getCatchaUsage(this.account!.merchantKey!).subscribe(res => {
+            this.captchaUsage = res;
+          }),
+          setInterval(() => {
+            this.infomationService.getDetail(this.account!.merchantKey!).subscribe(res => {
+              this.infoCaptcha = res;
+            }),
+              this.infomationService.getCatchaUsage(this.account!.merchantKey!).subscribe(res => {
+                this.captchaUsage = res;
+              });
+          }, 15000)
         )
       );
 

@@ -1,6 +1,7 @@
 package com.mycompany.myapp.config;
 
 import java.time.Duration;
+import javax.cache.CacheManager;
 import org.ehcache.config.builders.*;
 import org.ehcache.jsr107.Eh107Configuration;
 import org.hibernate.cache.jcache.ConfigSettings;
@@ -9,8 +10,11 @@ import org.springframework.boot.autoconfigure.cache.JCacheManagerCustomizer;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.boot.info.GitProperties;
+import org.springframework.cache.annotation.CachingConfigurer;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.cache.interceptor.KeyGenerator;
+import org.springframework.cache.jcache.JCacheCacheManager;
 import org.springframework.context.annotation.*;
 import tech.jhipster.config.JHipsterProperties;
 import tech.jhipster.config.cache.PrefixedKeyGenerator;
@@ -40,6 +44,11 @@ public class CacheConfiguration {
         return hibernateProperties -> hibernateProperties.put(ConfigSettings.CACHE_MANAGER, cacheManager);
     }
 
+    // @Bean
+    // public ConcurrentMapCacheManager cacheManager() {
+    //     return new ConcurrentMapCacheManager("yourCacheName");
+    // }
+
     @Bean
     public JCacheManagerCustomizer cacheManagerCustomizer() {
         return cm -> {
@@ -49,6 +58,15 @@ public class CacheConfiguration {
             createCache(cm, com.mycompany.myapp.domain.Authority.class.getName());
             createCache(cm, com.mycompany.myapp.domain.User.class.getName() + ".authorities");
             // jhipster-needle-ehcache-add-entry
+        };
+    }
+
+    @Bean
+    public JCacheManagerCustomizer cacheManagerCaptcha() {
+        return cm -> {
+            createCache(cm, "userCaptchaHistory");
+            createCache(cm, com.mycompany.myapp.domain.UserCaptchaHistory.class.getName());
+            System.out.println("Created Cache: " + cm.getCacheNames());
         };
     }
 
