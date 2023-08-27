@@ -10,19 +10,18 @@ import { UserManagementDeleteDialogComponent } from './delete/user-management-de
 import { userManagementRoute } from './user-management.route';
 import { UpdateCaptchaComponent } from './list/update-captcha.component';
 import { NgxSpinner, NgxSpinnerModule } from 'ngx-spinner';
-import { OrderModule } from 'ngx-order-pipe';
 import { DescendingPipe } from './list/descending.pipe';
 @NgModule({
-  imports: [CommonModule, SharedModule, RouterModule.forChild(userManagementRoute), NgxSpinnerModule, OrderModule],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(userManagementRoute), NgxSpinnerModule],
   declarations: [
-    DescendingPipe,
+    
     UserManagementComponent,
     UserManagementDetailComponent,
     UserManagementUpdateComponent,
     UserManagementDeleteDialogComponent,
     UpdateCaptchaComponent,
   ],
-  exports: [DescendingPipe],
+  exports: [],
   entryComponents: [UserManagementDeleteDialogComponent],
 })
 export class UserManagementModule {}

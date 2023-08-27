@@ -32,9 +32,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://103.200.21.254:3306/captcha_web_prod?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
-    username: ecaptcha
-    password: vietanhnd1909
+    url: jdbc:mysql://dbaas-db-7921748-do-user-14335086-0.b.db.ondigitalocean.com:25060/captcha_web_prod?useUnicode=true&characterEncoding=utf8&ssl-mode=REQUIRED&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+    username: doadmin
+    password: AVNS_OAaIMJkX6R30rIlQl63
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -74,7 +74,7 @@ spring:
         enabled: true
 
 server:
-  port: 8089
+  port: 8080
 
 # ===================================================================
 # JHipster specific properties

@@ -11,7 +11,7 @@ import { UserManagementService } from '../service/user-management.service';
 import { User } from '../user-management.model';
 import { UserManagementDeleteDialogComponent } from '../delete/user-management-delete-dialog.component';
 import { UpdateCaptchaComponent } from './update-captcha.component';
-import { OrderPipe } from 'ngx-order-pipe';
+
 
 @Component({
   selector: 'jhi-user-mgmt',
@@ -35,7 +35,6 @@ export class UserManagementComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private modalService: NgbModal,
-    private orderPipe: OrderPipe
   ) {}
 
   ngOnInit(): void {
@@ -84,17 +83,7 @@ export class UserManagementComponent implements OnInit {
     });
   }
 
-  sortByCaptcha(): void {
-    if (this.sortOrderCaptcha === 'countCaptcha') {
-      // switch to descending order
-      this.sortOrderCaptcha = '-countCaptcha';
-    } else {
-      // switch to ascending order
-      this.sortOrderCaptcha = 'countCaptcha';
-    }
-    // this.sortOrderCaptcha = this.orderPipe.transform(this.users, this.sortOrderCaptcha);
-  }
-
+  
   loadAll(): void {
     this.isLoading = true;
     this.userService
